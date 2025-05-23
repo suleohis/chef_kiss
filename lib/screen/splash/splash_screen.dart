@@ -1,7 +1,9 @@
+import 'package:recipe_app/controllers/splash/splash_controller.dart';
 import 'package:recipe_app/util/app_export.dart';
 
 class SplashScreen extends StatelessWidget {
-  const SplashScreen({super.key});
+  final SplashController controller = SplashController();
+  SplashScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +52,7 @@ class SplashScreen extends StatelessWidget {
                           style: TextStyles.normal.copyWith(fontSize: 16.sp, color: ColorsUtil.white),
                         ).paddingOnly(bottom: 30),
                         CustomButton(
-                          onPressed: () => Get.offNamed(RouteHelper.login),
+                          onPressed: () => controller.startCookingButton(),
                           text: 'start_cooking'.tr,
                           suffix: Icon(Icons.arrow_forward, size: 16.sp, color: ColorsUtil.white,),
                           background: ColorsUtil.primary,

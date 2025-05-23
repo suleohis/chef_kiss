@@ -1,10 +1,4 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:recipe_app/common/widgets/custom_snackbar.dart';
-import 'package:recipe_app/util/firebase_util.dart';
-
-import '../../data/models/user_model.dart';
+import '../../util/controller_export.dart';
 
 class SignupController extends GetxController {
   TextEditingController nameController = TextEditingController();
@@ -55,7 +49,7 @@ class SignupController extends GetxController {
         await FirebaseUtil.users.doc(user.uid).set(userModel.to())
             .catchError((e) {
           throw e;
-        });;
+        });
 
         isLoading = false;
         update();
@@ -64,6 +58,8 @@ class SignupController extends GetxController {
           title: 'success'.tr,
           message: 'signup_successful'.tr,
         );
+        StorageHelper.saveUser(userModel);
+        Get.offAllNamed(RouteHelper.initial);
         return userModel;
       }
       error(
@@ -76,6 +72,7 @@ class SignupController extends GetxController {
       return null;
     } catch (e) {
       error(context:  Get.context!, title: 'signUp_failed'.tr, message: e.toString());
+      printFun(e);
       isLoading = false;
       update();
       return null;

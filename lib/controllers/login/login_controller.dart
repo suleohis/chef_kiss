@@ -1,14 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
-import 'package:get/get.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:recipe_app/common/widgets/custom_snackbar.dart';
-import 'package:recipe_app/util/app_export.dart';
-import 'package:recipe_app/util/firebase_util.dart';
 
-import '../../data/models/user_model.dart';
+import '../../util/controller_export.dart';
+
 
 class LoginController extends GetxController {
   TextEditingController emailController = TextEditingController();
@@ -47,7 +40,6 @@ class LoginController extends GetxController {
             .catchError((e) {
               throw e;
             });
-        ;
         UserModel userModel = UserModel.from(
           data.data()! as Map<String, dynamic>,
         );
@@ -58,6 +50,8 @@ class LoginController extends GetxController {
           title: 'success'.tr,
           message: 'login_successful'.tr,
         );
+        StorageHelper.saveUser(userModel);
+        Get.offAllNamed(RouteHelper.initial);
         return userModel;
       }
       error(
@@ -74,6 +68,7 @@ class LoginController extends GetxController {
         title: 'login_failed'.tr,
         message: e.toString(),
       );
+      printFun(e);
       isLoading = false;
       update();
       return null;
@@ -143,6 +138,8 @@ class LoginController extends GetxController {
             });
         isLoading = false;
         update();
+        StorageHelper.saveUser(userModel);
+        Get.offAllNamed(RouteHelper.initial);
         return userModel;
       }
 
@@ -160,6 +157,7 @@ class LoginController extends GetxController {
         title: 'signUp_failed'.tr,
         message: e.toString(),
       );
+      printFun(e);
       isLoading = false;
       update();
       return null;
@@ -218,6 +216,8 @@ class LoginController extends GetxController {
               });
           isLoading = false;
           update();
+          StorageHelper.saveUser(userModel);
+          Get.offAllNamed(RouteHelper.initial);
           return userModel;
         }
       }
@@ -235,6 +235,7 @@ class LoginController extends GetxController {
         title: 'login_failed'.tr,
         message: e.toString(),
       );
+      printFun(e);
       isLoading = false;
       update();
       return null;
