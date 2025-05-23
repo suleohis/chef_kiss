@@ -41,7 +41,13 @@ class LoginController extends GetxController {
       if (credential.user != null) {
         User user = credential.user!;
 
-        DocumentSnapshot data = await FirebaseUtil.users.doc(user.uid).get();
+        DocumentSnapshot data = await FirebaseUtil.users
+            .doc(user.uid)
+            .get()
+            .catchError((e) {
+              throw e;
+            });
+        ;
         UserModel userModel = UserModel.from(
           data.data()! as Map<String, dynamic>,
         );
@@ -114,16 +120,29 @@ class LoginController extends GetxController {
             .get()
             .then((value) {
               if (value.docs.isEmpty) {
-                FirebaseUtil.users.doc(user.uid).set(userModel.to());
+                FirebaseUtil.users
+                    .doc(user.uid)
+                    .set(userModel.to())
+                    .catchError((e) {
+                      throw e;
+                    })
+                    .then(
+                      (value) => success(
+                        context: Get.context!,
+                        title: 'success'.tr,
+                        message: 'signup_successful'.tr,
+                      ),
+                    );
+              } else {
+                success(
+                  context: Get.context!,
+                  title: 'success'.tr,
+                  message: 'login_successful'.tr,
+                );
               }
             });
         isLoading = false;
         update();
-        success(
-          context: Get.context!,
-          title: 'success'.tr,
-          message: 'login_successful'.tr,
-        );
         return userModel;
       }
 
@@ -176,16 +195,29 @@ class LoginController extends GetxController {
               .get()
               .then((value) {
                 if (value.docs.isEmpty) {
-                  FirebaseUtil.users.doc(user.uid).set(userModel.to());
+                  FirebaseUtil.users
+                      .doc(user.uid)
+                      .set(userModel.to())
+                      .catchError((e) {
+                        throw e;
+                      })
+                      .then(
+                        (value) => success(
+                      context: Get.context!,
+                      title: 'success'.tr,
+                      message: 'signup_successful'.tr,
+                    ),
+                  );
+                } else {
+                  success(
+                    context: Get.context!,
+                    title: 'success'.tr,
+                    message: 'login_successful'.tr,
+                  );
                 }
               });
           isLoading = false;
           update();
-          success(
-            context: Get.context!,
-            title: 'success'.tr,
-            message: 'login_successful'.tr,
-          );
           return userModel;
         }
       }

@@ -67,7 +67,7 @@ class LoginScreen extends StatelessWidget {
                             label: 'password'.tr,
                             hidePassword: loginController.hidePassword,
                             suffix: GestureDetector(
-                              onTap: () => loginController.updateHidePassword,
+                              onTap: () => loginController.updateHidePassword(),
                               child: Icon(
                                 loginController.hidePassword
                                     ? Icons.visibility

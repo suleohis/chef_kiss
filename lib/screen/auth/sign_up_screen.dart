@@ -79,7 +79,7 @@ class SignUpScreen extends StatelessWidget {
                             controller: signUpController.passwordController,
                             hidePassword: signUpController.hidePassword,
                             suffix: GestureDetector(
-                              onTap: () => signUpController.updateHidePassword,
+                              onTap: () => signUpController.updateHidePassword(),
                               child: Icon(
                                 signUpController.hidePassword
                                     ? Icons.visibility
@@ -104,7 +104,7 @@ class SignUpScreen extends StatelessWidget {
                             controller: signUpController.cPasswordController,
                             hidePassword: signUpController.cHidePassword,
                             suffix: GestureDetector(
-                              onTap: () => signUpController.updateCHidePassword,
+                              onTap: () => signUpController.updateCHidePassword(),
                               child: Icon(
                                 signUpController.cHidePassword
                                     ? Icons.visibility

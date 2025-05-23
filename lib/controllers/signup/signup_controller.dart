@@ -52,7 +52,10 @@ class SignupController extends GetxController {
           email: emailController.text,
           name: nameController.text,
         );
-        await FirebaseUtil.users.doc(user.uid).set(userModel.to());
+        await FirebaseUtil.users.doc(user.uid).set(userModel.to())
+            .catchError((e) {
+          throw e;
+        });;
 
         isLoading = false;
         update();
