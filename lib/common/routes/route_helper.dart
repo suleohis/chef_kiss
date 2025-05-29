@@ -1,5 +1,3 @@
-
-
 import 'package:recipe_app/controllers/splash/splash_binding.dart';
 import 'package:recipe_app/screen/auth/forgot_password_screen.dart';
 import 'package:recipe_app/screen/auth/login_screen.dart';
@@ -9,6 +7,7 @@ import 'package:recipe_app/screen/recipe_detail/recipe_detail_screen.dart';
 import 'package:recipe_app/screen/search_recipes/search_recipes_screen.dart';
 import 'package:recipe_app/screen/splash/splash_screen.dart';
 
+import '../../controllers/recipe_detail/recipe_detail_binding.dart';
 import '../../util/app_export.dart';
 
 class RouteHelper {
@@ -21,21 +20,24 @@ class RouteHelper {
   static const recipeDetail = '/recipeDetail';
 
   static List<GetPage> pages = [
-    GetPage(name: splash,
-        binding: SplashBinding(),
-        page: ()=> SplashScreen()),
+    GetPage(name: splash, binding: SplashBinding(), page: () => SplashScreen()),
+
     /// Auth
-    GetPage(name: login, page: ()=> LoginScreen()),
-    GetPage(name: signUp, page: ()=> SignUpScreen()),
-    GetPage(name: forgotPassword, page: ()=> ForgotPasswordScreen()),
+    GetPage(name: login, page: () => LoginScreen()),
+    GetPage(name: signUp, page: () => SignUpScreen()),
+    GetPage(name: forgotPassword, page: () => ForgotPasswordScreen()),
 
     ///Search
-    GetPage(name: initial, page: ()=> DashboardScreen()),
+    GetPage(name: initial, page: () => DashboardScreen()),
 
     /// Search Recipe
-    GetPage(name: searchRecipe, page: ()=> SearchRecipesScreen()),
+    GetPage(name: searchRecipe, page: () => SearchRecipesScreen()),
 
     /// Recipe Detail
-    GetPage(name: recipeDetail, page: ()=> RecipeDetailScreen()),
+    GetPage(
+      name: recipeDetail,
+      binding: RecipeDetailBinding(),
+      page: () => RecipeDetailScreen(),
+    ),
   ];
 }

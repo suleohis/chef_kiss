@@ -1,10 +1,10 @@
 import 'package:recipe_app/controllers/recipe_detail/recipe_detail_controller.dart';
-import 'package:youtube_player_iframe/youtube_player_iframe.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../util/app_export.dart';
 
 class RecipeDetailScreen extends StatelessWidget {
-  final RecipeDetailController controller = RecipeDetailController();
+  final RecipeDetailController controller = Get.find<RecipeDetailController>();
   RecipeDetailScreen({super.key});
 
   @override
@@ -36,7 +36,7 @@ class RecipeDetailScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10.r),
                 child: YoutubePlayer(
                   controller: controller.youtubeController,
-                  backgroundColor: ColorsUtil.primary,
+                  liveUIColor: ColorsUtil.primary,
                 ),
               ),
             ),
