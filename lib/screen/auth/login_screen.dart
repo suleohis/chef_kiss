@@ -90,7 +90,7 @@ class LoginScreen extends StatelessWidget {
                     Align(
                       alignment: Alignment.topLeft,
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () => Get.toNamed(RouteHelper.forgotPassword),
                         child: Text(
                           'forgot_password'.tr,
                           style: TextStyles.normal.copyWith(

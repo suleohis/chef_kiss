@@ -33,6 +33,7 @@ class MyApp extends StatelessWidget {
           fallbackLocale: const Locale('en', 'US'), // Fallback if locale not supported
           theme: ThemeData(
             scaffoldBackgroundColor: ColorsUtil.white,
+            appBarTheme: AppBarTheme(backgroundColor: ColorsUtil.white),
             colorScheme: ColorScheme.fromSeed(seedColor: ColorsUtil.primary),
           ),
           getPages: RouteHelper.pages,
