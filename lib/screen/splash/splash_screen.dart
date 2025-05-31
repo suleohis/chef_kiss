@@ -2,7 +2,7 @@ import 'package:recipe_app/controllers/splash/splash_controller.dart';
 import 'package:recipe_app/util/app_export.dart';
 
 class SplashScreen extends StatelessWidget {
-  final SplashController controller = SplashController();
+  final SplashController controller = Get.put(SplashController());
   SplashScreen({super.key});
 
   @override

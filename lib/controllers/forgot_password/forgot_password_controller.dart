@@ -32,7 +32,7 @@ class ForgotPasswordController extends GetxController {
         title: 'reset_failed'.tr,
         message: e.toString(),
       );
-      printFun(e);
+      printError(e);
       isLoading = false;
       update();
     }

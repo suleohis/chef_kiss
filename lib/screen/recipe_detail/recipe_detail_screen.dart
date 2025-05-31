@@ -136,15 +136,24 @@ class RecipeDetailScreen extends StatelessWidget {
                                         color: ColorsUtil.greyBg,
                                       ),
                                       child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
                                         children: [
+                                          Container(
+                                            height: 52.h,
+                                            width: 52.w,
+                                            decoration: BoxDecoration(
+                                              color: ColorsUtil.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(10.r),
+                                            ),
+                                            child: Image.asset(Assets.images.foodImage.path),
+                                          ).paddingOnly(right: 10.w),
                                           Text(
                                             'Tomatoes',
                                             style: TextStyles.semiBold.copyWith(
                                               fontSize: 16.sp,
                                             ),
                                           ),
+                                          Spacer(),
                                           Text(
                                             '500g',
                                             style: TextStyles.normal.copyWith(

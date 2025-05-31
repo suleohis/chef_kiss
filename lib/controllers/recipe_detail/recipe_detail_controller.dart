@@ -32,7 +32,7 @@ class RecipeDetailController extends GetxController {
       );
     } else {
       // Handle invalid YouTube URL
-      printFun('Invalid YouTube URL: $videoUrl');
+      printWarning('Invalid YouTube URL: $videoUrl');
       // You might want to display an error message to the user
     }
   }

@@ -21,7 +21,7 @@ class SignupController extends GetxController {
     update();
   }
 
-  updateAccept(){
+  updateAccept() {
     accept = !accept;
     update();
   }
@@ -37,7 +37,10 @@ class SignupController extends GetxController {
           .createUserWithEmailAndPassword(
             email: emailController.text,
             password: passwordController.text,
-          ).catchError((e) {throw e;});
+          )
+          .catchError((e) {
+            throw e;
+          });
 
       if (credential.user != null) {
         User user = credential.user!;
@@ -45,9 +48,11 @@ class SignupController extends GetxController {
           id: user.uid,
           email: emailController.text,
           name: nameController.text,
+          bookmark: [],
         );
-        await FirebaseUtil.users.doc(user.uid).set(userModel.to())
-            .catchError((e) {
+        await FirebaseUtil.users.doc(user.uid).set(userModel.to()).catchError((
+          e,
+        ) {
           throw e;
         });
 
@@ -71,8 +76,12 @@ class SignupController extends GetxController {
       update();
       return null;
     } catch (e) {
-      error(context:  Get.context!, title: 'signUp_failed'.tr, message: e.toString());
-      printFun(e);
+      error(
+        context: Get.context!,
+        title: 'signUp_failed'.tr,
+        message: e.toString(),
+      );
+      printError(e);
       isLoading = false;
       update();
       return null;

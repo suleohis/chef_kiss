@@ -2,7 +2,6 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
 import '../../util/controller_export.dart';
 
-
 class LoginController extends GetxController {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -68,7 +67,7 @@ class LoginController extends GetxController {
         title: 'login_failed'.tr,
         message: e.toString(),
       );
-      printFun(e);
+      printError(e);
       isLoading = false;
       update();
       return null;
@@ -109,6 +108,7 @@ class LoginController extends GetxController {
           id: user.uid,
           email: googleUser.email,
           name: googleUser.displayName!,
+          bookmark: [],
         );
         FirebaseUtil.users
             .where(ConstUtil.id, isEqualTo: auth.currentUser!.uid)
@@ -157,7 +157,7 @@ class LoginController extends GetxController {
         title: 'signUp_failed'.tr,
         message: e.toString(),
       );
-      printFun(e);
+      printError(e);
       isLoading = false;
       update();
       return null;
@@ -187,6 +187,7 @@ class LoginController extends GetxController {
             name:
                 '${facebookAuthCredential.appleFullPersonName!.namePrefix!} '
                 '${facebookAuthCredential.appleFullPersonName!.nameSuffix!}',
+            bookmark: [],
           );
           FirebaseUtil.users
               .where(ConstUtil.id, isEqualTo: auth.currentUser!.uid)
@@ -201,11 +202,11 @@ class LoginController extends GetxController {
                       })
                       .then(
                         (value) => success(
-                      context: Get.context!,
-                      title: 'success'.tr,
-                      message: 'signup_successful'.tr,
-                    ),
-                  );
+                          context: Get.context!,
+                          title: 'success'.tr,
+                          message: 'signup_successful'.tr,
+                        ),
+                      );
                 } else {
                   success(
                     context: Get.context!,
@@ -235,7 +236,7 @@ class LoginController extends GetxController {
         title: 'login_failed'.tr,
         message: e.toString(),
       );
-      printFun(e);
+      printError(e);
       isLoading = false;
       update();
       return null;

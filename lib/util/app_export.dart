@@ -16,3 +16,4 @@ export 'package:recipe_app/common/widgets/custom_button.dart';
 export 'package:recipe_app/common/widgets/custom_textfield.dart';
 export 'package:recipe_app/common/styles/text_styles.dart';
 export 'package:font_awesome_flutter/font_awesome_flutter.dart';
+export 'package:shimmer_animation/shimmer_animation.dart';
