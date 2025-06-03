@@ -1,5 +1,5 @@
 class ConstUtil {
-  static const String appName = 'Recipe Planning App';
+  static const String appName = 'Chef Kiss';
   static const String baseUrl = 'https://www.themealdb.com/api/json/v1/1/';
   static const String searchNameApi = 'search.php?s=';
   static const String getAllMealByLetterApi = 'search.php?a=';
