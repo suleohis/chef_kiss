@@ -1,4 +1,5 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:recipe_app/common/function/print_fun.dart';
 import 'package:recipe_app/controllers/splash/splash_controller.dart';
 import 'package:recipe_app/util/app_export.dart';
@@ -54,9 +55,13 @@ class NotificationService {
   }
 
   Future<String> _getLocalTimezone() async {
-    // This is a simplified way to get local timezone.
-    // For more robust solutions, consider platform channels or other packages.
-    return tz.local.name;
+    try {
+      final String timezoneName = await FlutterTimezone.getLocalTimezone();
+      return timezoneName;
+    } catch (e) {
+      printError("Could not get native timezone: $e"); // Use printError from your utils
+      return 'Etc/UTC'; // Fallback to UTC if native timezone cannot be determined
+    }
   }
 
   // Request permissions for Android 13+ and iOS
@@ -87,7 +92,7 @@ class NotificationService {
     }
     // You can handle navigation or other actions based on the payload
     // Example: Navigate to a specific screen
-    if (payload == 'daily_meal_reminder') {
+    if (payload != null) {
       SplashController controller = Get.put(SplashController());
       controller.startCookingButton();
     }
@@ -163,6 +168,7 @@ class NotificationService {
   // Helper to get the next instance of a specific time in the local timezone
   tz.TZDateTime _nextInstanceOfTime(DateTime time) {
     final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
+    print(tz.local);
     tz.TZDateTime scheduledDate = tz.TZDateTime(
       tz.local,
       now.year,

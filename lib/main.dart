@@ -15,14 +15,36 @@ void main() async{
    /// Initialize your notification service
    await NotificationService().init();
 
-   /// You can schedule your daily notification here
+   // --- Schedule Daily Notifications for Breakfast, Lunch, and Dinner ---
+
+   // Breakfast Reminder (e.g., 8:00 AM)
    await NotificationService().scheduleDailyNotification(
-     0, // Unique ID for this notification
-     'Meal Reminder!',
-     'Time to plan your delicious meal for today!',
-     DateTime(2025, 5, 2, 23, 5, 0), // 8:00 AM
-     payload: 'daily_meal_reminder',
+     100, // Unique ID for Breakfast notification
+     '🍳 Breakfast Time!',
+     'Good morning! Time for a delicious breakfast to start your day right!',
+    DateTime(2025, 5, 2, 8, 0, 0),// 8:00 AM
+     payload: 'daily_breakfast_reminder',
    );
+
+   // Lunch Reminder (e.g., 1:00 PM)
+   await NotificationService().scheduleDailyNotification(
+     101, // Unique ID for Lunch notification
+     '🍲 Lunch Break!',
+     'It\'s lunchtime! What delicious meal will you prepare today?',
+     DateTime(2025, 5, 2, 13, 0, 0), // 1:00 PM
+     payload: 'daily_lunch_reminder',
+   );
+
+   // Dinner Reminder (e.g., 7:00 PM)
+   await NotificationService().scheduleDailyNotification(
+     102, // Unique ID for Dinner notification
+     '🍽️ Dinner Time!',
+     'Evening! Time to cook up a fantastic dinner. Find your next favorite recipe!',
+     DateTime(2025, 5, 2, 19, 0, 0), // 7:00 PM
+     payload: 'daily_dinner_reminder',
+   );
+
+   // --- End of Notification Scheduling ---
  });
 
   final translation = Translation();
@@ -46,20 +68,6 @@ class MyApp extends StatelessWidget {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           title: ConstUtil.appName,
-          onInit: () async{
-            /// Notification
-            /// Initialize your notification service
-            await NotificationService().init();
-
-            /// You can schedule your daily notification here
-            await NotificationService().scheduleDailyNotification(
-              0, // Unique ID for this notification
-              'Meal Reminder!',
-              'Time to plan your delicious meal for today!',
-              DateTime(2025, 5, 2, 23, 5, 0), // 8:00 AM
-              payload: 'daily_meal_reminder',
-            );
-          },
           translations: translation, // Your translation class
           locale: locale ?? Get.deviceLocale, // Gets the device locale
           fallbackLocale: const Locale('en', 'US'), // Fallback if locale not supported
