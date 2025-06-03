@@ -1,8 +1,5 @@
 # Chef Kiss - Your Daily Recipe Companion 👨‍🍳👩‍🍳
 
-![App Preview GIF](https://raw.githubusercontent.com/suleohis/recipe_app/main/assets/app_demo.gif)
-*(Replace this with your actual app GIF or a relevant screenshot.)*
-
 ## 🌟 Project Overview
 
 **Chef Kiss** is a delightful and intuitive mobile application built with Flutter, designed to help food enthusiasts discover, explore, and manage a vast collection of delicious meal recipes. Leveraging the comprehensive TheMealDB API, the app provides a seamless experience for searching meals, Browse by category or ingredient, viewing detailed cooking instructions, and saving favorite recipes for quick access.
@@ -130,6 +127,14 @@ recipe_app/
 ## 🛠️ Getting Started
 
 Follow these steps to set up and run the **Chef Kiss** application on your local machine.
+
+### Download APK (Android)
+
+You can download the latest Android application package (APK) directly from Google Drive:
+
+* **[Download Chef Kiss APK](https://drive.google.com/file/d/1w84ADyqNKT8PdhkngrqPDRUNYRPksGks/view?usp=drive_link)**
+
+    *(**Note:** Ensure your device allows installation from unknown sources if downloading directly.)*
 
 ### Prerequisites
 
