@@ -15,14 +15,14 @@ class MealRepo {
     return response;
   }
 
-  Future<ResponseModel> getLookupMealDetail(String letter) async {
-    String url = ConstUtil.lookupMealDetailApi + letter;
+  Future<ResponseModel> getLookupMealDetail(String mealId) async {
+    String url = ConstUtil.lookupMealDetailApi + mealId;
     ResponseModel response = await ApiService.getRequest(url);
     return response;
   }
 
-  Future<ResponseModel> getSingleMeal() async {
-    String url = ConstUtil.singleMealApi;
+  Future<ResponseModel> getRandomSingleMeal() async {
+    String url = ConstUtil.randomSingleMealApi;
     ResponseModel response = await ApiService.getRequest(url);
     return response;
   }

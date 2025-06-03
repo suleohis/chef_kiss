@@ -43,14 +43,28 @@ class HomeMealShimmerWidget extends StatelessWidget {
       mainAxisSpacing: 15.h,
       itemCount: 10,
       itemBuilder: (context, index) {
-        return Shimmer(
-          child: Container(
-            height: 150.h,
-            decoration: BoxDecoration(
-              color: ColorsUtil.greyBg,
-              borderRadius: BorderRadius.circular(10.r)
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Shimmer(
+              child: Container(
+                height: 150.h,
+                decoration: BoxDecoration(
+                  color: ColorsUtil.greyBg,
+                  borderRadius: BorderRadius.circular(10.r)
+                ),
+              ),
+            ).paddingOnly(bottom: 5.h),
+            Shimmer(
+              child: Container(
+                height: 20.h,
+                decoration: BoxDecoration(
+                  color: ColorsUtil.greyBg,
+                  borderRadius: BorderRadius.circular(10.r),
+                ),
+              ),
             ),
-          ),
+          ],
         );
       },
     );

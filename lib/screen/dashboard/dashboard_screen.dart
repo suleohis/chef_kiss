@@ -43,18 +43,8 @@ class DashboardScreen extends StatelessWidget {
                   onTap: () => controller.changeTab(2),
                   child: SvgPicture.asset(
                     controller.tabIndex.value == 2
-                        ? Assets.icons.notifiSelectedIcon.path
-                        : Assets.icons.notifiIcon.path,
-                    height: 24.h,
-                    width: 24.w,
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () => controller.changeTab(3),
-                  child: SvgPicture.asset(
-                    controller.tabIndex.value == 3
-                        ? Assets.icons.profileSelectedIcon.path
-                        : Assets.icons.profileIcon.path,
+                        ? Assets.icons.categoriesSelectedIcon.path
+                        : Assets.icons.categoriesIcon.path,
                     height: 24.h,
                     width: 24.w,
                   ),

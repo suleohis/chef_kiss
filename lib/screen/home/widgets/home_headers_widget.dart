@@ -27,14 +27,18 @@ class HomeHeadersWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(10.r),
-                  child: Image.asset(
-                    Assets.images.noProfile.path,
-                    height: 40.h,
-                    width: 40.w,
+                CustomPopup(
+                content: GestureDetector(
+                  onTap: () => Get.find<HomeController>().logout(),
+                  child: Wrap(
+                    runAlignment: WrapAlignment.center,
+                    children: [
+                      Icon(Icons.logout).paddingOnly(right: 5.w),
+                      Text('logout'.tr, style: TextStyles.normal,)
+                    ],
                   ),
-                ),
+                ).paddingAll(5)
+                , child: Icon(Icons.more_vert))
               ],
             ).paddingOnly(bottom: 20.h),
             Row(
@@ -69,6 +73,19 @@ class HomeHeadersWidget extends StatelessWidget {
                 ),
               ],
             ).paddingOnly(bottom: 20.h),
+
+            Obx(
+              () =>  Center(
+                child: CustomButton(
+                  onPressed: () => Get.find<HomeController>().randomFoodLookup(),
+                  text: 'try_something'.tr,
+                  background: ColorsUtil.primary,
+                  foreground: ColorsUtil.white,
+                  isLoading: Get.find<HomeController>().isLoadingRandom.value,
+                  size: Size(243.w, 54.h),
+                ).paddingOnly(bottom: 20.h),
+              ),
+            ),
           ],
         );
       },

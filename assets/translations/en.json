@@ -57,5 +57,15 @@
   "items": "Items",
   "instruction": "Instruction",
   "save": "Save",
-  "unsaved": "Unsaved"
+  "unsaved": "Saved",
+  "bookmark_added": "Bookmark Added",
+  "bookmark_removed": "Bookmark Removed",
+  "categories": "Categories",
+  "show_more": "Show more",
+  "show_less": "Show less",
+  "categories_meals": "Categories Meals",
+  "try_something": "Try something new today",
+  "empty_list": "Nothing Found!",
+  "logout": "Logout",
+  "logout_successful": "Logout Successfully"
 }

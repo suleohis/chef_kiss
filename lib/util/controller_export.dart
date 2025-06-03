@@ -12,10 +12,13 @@ export '../../common/function/print_fun.dart';
 export '../../data/models/user_model.dart';
 export '../../data/services/storage_helper.dart';
 export '../../util/const_util.dart';
+export '../../data/models/meal_response.dart';
 export 'package:recipe_app/data/models/filtered_meal.dart';
 export 'package:recipe_app/data/models/filtered_meal_response.dart';
 export 'package:recipe_app/data/models/list_items/category_list_item.dart';
 export 'package:recipe_app/data/models/list_responses/category_list_response.dart';
 export 'package:recipe_app/data/repositories/firebase_repo.dart';
 export 'package:recipe_app/data/repositories/meal_repo.dart';
+export 'package:recipe_app/data/models/meal.dart';
+
 

@@ -23,6 +23,14 @@ class $AssetsIconsGen {
   SvgGenImage get bookmarkSelectedIcon =>
       const SvgGenImage('assets/icons/bookmark_selected_icon.svg');
 
+  /// File path: assets/icons/categories_icon.svg
+  SvgGenImage get categoriesIcon =>
+      const SvgGenImage('assets/icons/categories_icon.svg');
+
+  /// File path: assets/icons/categories_selected_icon.svg
+  SvgGenImage get categoriesSelectedIcon =>
+      const SvgGenImage('assets/icons/categories_selected_icon.svg');
+
   /// File path: assets/icons/home_icon.svg
   SvgGenImage get homeIcon => const SvgGenImage('assets/icons/home_icon.svg');
 
@@ -30,32 +38,14 @@ class $AssetsIconsGen {
   SvgGenImage get homeSelectedIcon =>
       const SvgGenImage('assets/icons/home_selected_icon.svg');
 
-  /// File path: assets/icons/notifi_icon.svg
-  SvgGenImage get notifiIcon =>
-      const SvgGenImage('assets/icons/notifi_icon.svg');
-
-  /// File path: assets/icons/notifi_selected_icon.svg
-  SvgGenImage get notifiSelectedIcon =>
-      const SvgGenImage('assets/icons/notifi_selected_icon.svg');
-
-  /// File path: assets/icons/profile_icon.svg
-  SvgGenImage get profileIcon =>
-      const SvgGenImage('assets/icons/profile_icon.svg');
-
-  /// File path: assets/icons/profile_selected_icon.svg
-  SvgGenImage get profileSelectedIcon =>
-      const SvgGenImage('assets/icons/profile_selected_icon.svg');
-
   /// List of all assets
   List<SvgGenImage> get values => [
         bookmarkIcon,
         bookmarkSelectedIcon,
+        categoriesIcon,
+        categoriesSelectedIcon,
         homeIcon,
-        homeSelectedIcon,
-        notifiIcon,
-        notifiSelectedIcon,
-        profileIcon,
-        profileSelectedIcon
+        homeSelectedIcon
       ];
 }
 
@@ -66,17 +56,13 @@ class $AssetsImagesGen {
   AssetGenImage get facebookButton =>
       const AssetGenImage('assets/images/facebook_button.png');
 
-  /// File path: assets/images/food_image.png
-  AssetGenImage get foodImage =>
-      const AssetGenImage('assets/images/food_image.png');
-
   /// File path: assets/images/google_button.png
   AssetGenImage get googleButton =>
       const AssetGenImage('assets/images/google_button.png');
 
-  /// File path: assets/images/home_recipe_bg.png
-  AssetGenImage get homeRecipeBg =>
-      const AssetGenImage('assets/images/home_recipe_bg.png');
+  /// File path: assets/images/no_image.png
+  AssetGenImage get noImage =>
+      const AssetGenImage('assets/images/no_image.png');
 
   /// File path: assets/images/no_profile.png
   AssetGenImage get noProfile =>
@@ -90,15 +76,8 @@ class $AssetsImagesGen {
       const AssetGenImage('assets/images/splash_logo.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [
-        facebookButton,
-        foodImage,
-        googleButton,
-        homeRecipeBg,
-        noProfile,
-        splash,
-        splashLogo
-      ];
+  List<AssetGenImage> get values =>
+      [facebookButton, googleButton, noImage, noProfile, splash, splashLogo];
 }
 
 class $AssetsTranslationsGen {

@@ -1,6 +1,6 @@
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:recipe_app/controllers/home/search_meal_controller.dart';
-import 'package:recipe_app/controllers/search/home_controller.dart';
+import 'package:recipe_app/controllers/search/search_meal_controller.dart';
+import 'package:recipe_app/controllers/home/home_controller.dart';
 
 import '../../util/app_export.dart';
 

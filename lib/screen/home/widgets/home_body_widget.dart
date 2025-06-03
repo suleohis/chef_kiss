@@ -57,6 +57,16 @@ class HomeBodyWidget extends StatelessWidget {
             /// Meals
             controller.isLoadingCategory
                 ? HomeMealShimmerWidget()
+                : controller.meals.isEmpty ?
+                  Center(
+                    child: Text(
+                      'empty_list'.tr,
+                      style: TextStyles.bold.copyWith(
+                        fontSize: 24.sp,
+                        color: ColorsUtil.primary
+                      ),
+                    ),
+                  ).paddingSymmetric(horizontal: 30.w, vertical: 30.h)
                 : AlignedGridView.count(
                   physics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
@@ -66,7 +76,9 @@ class HomeBodyWidget extends StatelessWidget {
                   itemCount: controller.meals.length,
                   itemBuilder: (context, index) {
                     return GestureDetector(
-                      onTap: () => Get.toNamed(RouteHelper.recipeDetail),
+                      onTap: () => Get.toNamed(RouteHelper.recipeDetail, arguments: {
+                        'mealId': controller.meals[index].idMeal!
+                      }),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -79,9 +91,19 @@ class HomeBodyWidget extends StatelessWidget {
                                       controller.meals[index].strMealThumb ??
                                       '',
                                   height: 124.h,
-                                  fit: BoxFit.fill,
+                                  width: double.maxFinite.w,
+                                  fit: BoxFit.cover,
+                                  errorWidget:
+                                      (_, url, error) => Image.asset(
+                                        Assets.images.noImage.path,
+                                        height: 124.h,
+                                        fit: BoxFit.cover,
+                                      ),
                                 ).paddingOnly(bottom: 5.h),
-                                if (controller.user?.bookmark.contains(controller.meals[index].idMeal) ?? false)
+                                if (controller.user?.bookmark.contains(
+                                      controller.meals[index].idMeal,
+                                    ) ??
+                                    false)
                                   Positioned(
                                     right: 8.w,
                                     top: 8.h,

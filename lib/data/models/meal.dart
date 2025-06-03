@@ -1,3 +1,5 @@
+import 'meal_ingredient.dart';
+
 class Meal {
   String? idMeal;
   String? strMeal;
@@ -10,8 +12,9 @@ class Meal {
   String? strYoutube;
   String? strSource;
   String? dateModified;
-  List<String>? ingredients; // Combined list of ingredients
-  List<String>? measures;    // Combined list of measures
+
+  // NEW FIELD: A list of MealIngredient objects
+  List<MealIngredient>? mealIngredients;
 
   Meal({
     this.idMeal,
@@ -25,27 +28,29 @@ class Meal {
     this.strYoutube,
     this.strSource,
     this.dateModified,
-    this.ingredients,
-    this.measures,
+    this.mealIngredients, // Add to constructor
   });
 
   // Factory constructor to create a Meal object from a JSON map
   factory Meal.fromJson(Map<String, dynamic> json) {
-    List<String> parsedIngredients = [];
-    List<String> parsedMeasures = [];
+    List<MealIngredient> parsedMealIngredients = [];
 
     // Loop through strIngredient1 to strIngredient20 and strMeasure1 to strMeasure20
-    // and add non-empty/non-null values to the lists
     for (int i = 1; i <= 20; i++) {
       String? ingredient = json['strIngredient$i'] as String?;
       String? measure = json['strMeasure$i'] as String?;
 
-      if (ingredient != null && ingredient.trim().isNotEmpty) {
-        parsedIngredients.add(ingredient.trim());
+      // If the ingredient string is null or empty after trimming, skip this pair.
+      // This ensures we only create MealIngredient objects for actual ingredients.
+      if (ingredient == null || ingredient.trim().isEmpty) {
+        continue; // Skip to the next iteration
       }
-      if (measure != null && measure.trim().isNotEmpty) {
-        parsedMeasures.add(measure.trim());
-      }
+
+      // Create MealIngredient. If measure is null, default to an empty string.
+      parsedMealIngredients.add(MealIngredient(
+        ingredient: ingredient.trim(),
+        measure: (measure ?? '').trim(), // Ensure measure is not null
+      ));
     }
 
     return Meal(
@@ -60,8 +65,8 @@ class Meal {
       strYoutube: json['strYoutube'] as String?,
       strSource: json['strSource'] as String?,
       dateModified: json['dateModified'] as String?,
-      ingredients: parsedIngredients.isEmpty ? null : parsedIngredients, // Set to null if empty
-      measures: parsedMeasures.isEmpty ? null : parsedMeasures,       // Set to null if empty
+      // Assign the parsed list of MealIngredient objects
+      mealIngredients: parsedMealIngredients.isEmpty ? null : parsedMealIngredients,
     );
   }
 
@@ -80,22 +85,17 @@ class Meal {
     data['strSource'] = strSource;
     data['dateModified'] = dateModified;
 
-    // Convert combined lists back to strIngredientX/strMeasureX for JSON
-    if (ingredients != null) {
-      for (int i = 0; i < ingredients!.length && i < 20; i++) {
-        data['strIngredient${i + 1}'] = ingredients![i];
-      }
-    }
-    if (measures != null) {
-      for (int i = 0; i < measures!.length && i < 20; i++) {
-        data['strMeasure${i + 1}'] = measures![i];
+    // Convert List<MealIngredient> back to strIngredientX/strMeasureX for JSON
+    if (mealIngredients != null) {
+      for (int i = 0; i < mealIngredients!.length && i < 20; i++) {
+        data['strIngredient${i + 1}'] = mealIngredients![i].ingredient;
+        data['strMeasure${i + 1}'] = mealIngredients![i].measure;
       }
     }
     // Fill remaining strIngredientX/strMeasureX with null if lists are shorter than 20
-    for (int i = (ingredients?.length ?? 0); i < 20; i++) {
+    // This is important if the API expects all 20 fields, even if empty.
+    for (int i = (mealIngredients?.length ?? 0); i < 20; i++) {
       data['strIngredient${i + 1}'] = null;
-    }
-    for (int i = (measures?.length ?? 0); i < 20; i++) {
       data['strMeasure${i + 1}'] = null;
     }
 
