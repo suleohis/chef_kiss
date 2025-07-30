@@ -11,17 +11,17 @@ class SignupController extends GetxController {
   bool hidePassword = true;
   bool cHidePassword = true;
 
-  updateHidePassword() {
+  void updateHidePassword() {
     hidePassword = !hidePassword;
     update();
   }
 
-  updateCHidePassword() {
+  void updateCHidePassword() {
     cHidePassword = !cHidePassword;
     update();
   }
 
-  updateAccept() {
+  void updateAccept() {
     accept = !accept;
     update();
   }
@@ -49,8 +49,9 @@ class SignupController extends GetxController {
           email: emailController.text,
           name: nameController.text,
           bookmark: [],
+          aiRecipes: [],
         );
-        await FirebaseUtil.users.doc(user.uid).set(userModel.to()).catchError((
+        await FirebaseUtil.users.doc(user.uid).set(userModel.toJson()).catchError((
           e,
         ) {
           throw e;
@@ -67,23 +68,23 @@ class SignupController extends GetxController {
         Get.offAllNamed(RouteHelper.initial);
         return userModel;
       }
+      isLoading = false;
+      update();
       error(
         context: Get.context!,
         title: 'signUp_failed'.tr,
         message: 'something_wrong'.tr,
       );
-      isLoading = false;
-      update();
       return null;
     } catch (e) {
+      isLoading = false;
+      update();
       error(
         context: Get.context!,
         title: 'signUp_failed'.tr,
         message: e.toString(),
       );
       printError(e);
-      isLoading = false;
-      update();
       return null;
     }
   }

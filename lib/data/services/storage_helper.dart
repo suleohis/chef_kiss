@@ -7,9 +7,9 @@ class StorageHelper {
   static String userKey = 'userKey';
 
   /// Save User
-  static saveUser(UserModel user) async {
+  static Future<void> saveUser(UserModel user) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
-    pref.setString(userKey, jsonEncode(user.to()));
+    pref.setString(userKey, jsonEncode(user.toJson()));
   }
 
   /// Get User
@@ -20,7 +20,7 @@ class StorageHelper {
     return UserModel.from(jsonDecode(data)!);
   }
 
-  static logout() async {
+  static Future<void> logout() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     pref.clear();
   }

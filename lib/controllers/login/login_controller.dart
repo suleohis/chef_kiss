@@ -9,7 +9,7 @@ class LoginController extends GetxController {
   bool isLoading = false;
   bool hidePassword = true;
 
-  updateHidePassword() {
+  void updateHidePassword() {
     hidePassword = !hidePassword;
     update();
   }
@@ -53,23 +53,23 @@ class LoginController extends GetxController {
         Get.offAllNamed(RouteHelper.initial);
         return userModel;
       }
+      isLoading = false;
+      update();
       error(
         context: Get.context!,
         title: 'login_failed'.tr,
         message: 'something_wrong'.tr,
       );
-      isLoading = false;
-      update();
       return null;
     } catch (e) {
+      isLoading = false;
+      update();
       error(
         context: Get.context!,
         title: 'login_failed'.tr,
         message: e.toString(),
       );
       printError(e);
-      isLoading = false;
-      update();
       return null;
     }
   }
@@ -84,7 +84,7 @@ class LoginController extends GetxController {
         (e) => throw e,
       );
 
-      if (googleUser == null) throw 'something_wrong';
+      if (googleUser == null) throw 'something_wrong'.tr;
 
       ///Get auth info
       final GoogleSignInAuthentication googleAuth = await googleUser
@@ -104,11 +104,12 @@ class LoginController extends GetxController {
       if (userCredential.user != null) {
         User user = userCredential.user!;
         FirebaseAuth auth = FirebaseAuth.instance;
-        UserModel userModel = UserModel(
+        UserModel userModel =  UserModel(
           id: user.uid,
           email: googleUser.email,
           name: googleUser.displayName!,
           bookmark: [],
+          aiRecipes: [],
         );
         FirebaseUtil.users
             .where(ConstUtil.id, isEqualTo: auth.currentUser!.uid)
@@ -117,7 +118,7 @@ class LoginController extends GetxController {
               if (value.docs.isEmpty) {
                 FirebaseUtil.users
                     .doc(user.uid)
-                    .set(userModel.to())
+                    .set(userModel.toJson())
                     .catchError((e) {
                       throw e;
                     })
@@ -143,23 +144,23 @@ class LoginController extends GetxController {
         return userModel;
       }
 
+      isLoading = false;
+      update();
       error(
         context: Get.context!,
         title: 'login_failed'.tr,
         message: 'something_wrong'.tr,
       );
-      isLoading = false;
-      update();
       return null;
     } catch (e) {
+      isLoading = false;
+      update();
       error(
         context: Get.context!,
         title: 'signUp_failed'.tr,
         message: e.toString(),
       );
       printError(e);
-      isLoading = false;
-      update();
       return null;
     }
   }
@@ -188,6 +189,7 @@ class LoginController extends GetxController {
                 '${facebookAuthCredential.appleFullPersonName!.namePrefix!} '
                 '${facebookAuthCredential.appleFullPersonName!.nameSuffix!}',
             bookmark: [],
+            aiRecipes: [],
           );
           FirebaseUtil.users
               .where(ConstUtil.id, isEqualTo: auth.currentUser!.uid)
@@ -196,7 +198,7 @@ class LoginController extends GetxController {
                 if (value.docs.isEmpty) {
                   FirebaseUtil.users
                       .doc(user.uid)
-                      .set(userModel.to())
+                      .set(userModel.toJson())
                       .catchError((e) {
                         throw e;
                       })

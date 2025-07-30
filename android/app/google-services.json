@@ -7,6 +7,50 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:312088988951:android:7b277723c945aa42aebb52",
+        "android_client_info": {
+          "package_name": "com.ephraim.sule.chefKiss"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "312088988951-e97lfikg7g7h0ml0sbc7dphnehv27qv3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ephraim.sule.chefKiss",
+            "certificate_hash": "20fc3fb9272a3d804e97a2b59f33b62e6ce2fb98"
+          }
+        },
+        {
+          "client_id": "312088988951-2kcbqt4rkpnipaavk4h4riqt0gb1kq35.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoIR-x2cwTvzbMt2l_WChSTNOsHYHnoNg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "312088988951-2kcbqt4rkpnipaavk4h4riqt0gb1kq35.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "312088988951-30bugsq1tb0r9eam4b1kt4uc68jq45up.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ephraim.sule.chefKiss"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:312088988951:android:49cd79da35a543fcaebb52",
         "android_client_info": {
           "package_name": "com.example.recipe_app"
@@ -37,6 +81,13 @@
             {
               "client_id": "312088988951-2kcbqt4rkpnipaavk4h4riqt0gb1kq35.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "312088988951-30bugsq1tb0r9eam4b1kt4uc68jq45up.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ephraim.sule.chefKiss"
+              }
             }
           ]
         }

@@ -23,7 +23,7 @@ class CategoriesController extends GetxController {
     Get.find<HomeController>().getUser();
   }
 
-  onSelectedCategory(int index) {
+  void onSelectedCategory(int index) {
     selectedCategory = categories[index];
     Get.toNamed(RouteHelper.categoriesMeal);
     getMealsData();
@@ -31,7 +31,7 @@ class CategoriesController extends GetxController {
   }
 
   /// Get Categories
-  getCategoriesData() async {
+  Future<void> getCategoriesData() async {
     try {
       if (categories.isNotEmpty) {
         return;
@@ -53,15 +53,15 @@ class CategoriesController extends GetxController {
         update();
       }
     } catch (e) {
-      error(title: 'error'.tr, context: Get.context!, message: e.toString());
       isLoadingCategory = false;
       update();
+      error(title: 'error'.tr, context: Get.context!, message: e.toString());
       printError(e.toString());
     }
   }
 
   /// Get Meals Data
-  getMealsData() async {
+  Future<void> getMealsData() async {
     try {
       isLoadingMeal = true;
       update();
@@ -80,10 +80,10 @@ class CategoriesController extends GetxController {
         update();
       }
     } catch (e) {
-      error(title: 'error'.tr, context: Get.context!, message: e.toString());
-      printError(e.toString());
       isLoadingMeal = false;
       update();
+      error(title: 'error'.tr, context: Get.context!, message: e.toString());
+      printError(e.toString());
     }
   }
 }

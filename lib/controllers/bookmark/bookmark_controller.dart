@@ -20,7 +20,7 @@ class BookmarkController extends GetxController {
     getBookmarkData();
   }
 
-  getBookmarkData() async {
+  Future<void> getBookmarkData() async {
     try {
       isLoading = true;
       update();
@@ -33,15 +33,15 @@ class BookmarkController extends GetxController {
             responseModel.responseJson,
           );
 
-          meals.addAll(response.meals ?? []);
+          meals = response.meals ?? [];
           isLoading = false;
           update();
         }
       }
     } catch (e) {
-      error(title: 'error'.tr, context: Get.context!, message: e.toString());
       isLoading = false;
       update();
+      error(title: 'error'.tr, context: Get.context!, message: e.toString());
     }
   }
 }

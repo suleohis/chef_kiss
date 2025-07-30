@@ -18,7 +18,7 @@ class HomeHeadersWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '${'hello'.tr} ${home.user?.name}',
+                      '${'hello'.tr} ${home.user?.name ?? ''}',
                       style: TextStyles.bold.copyWith(fontSize: 20),
                     ),
                     Text(
@@ -28,17 +28,42 @@ class HomeHeadersWidget extends StatelessWidget {
                   ],
                 ),
                 CustomPopup(
-                content: GestureDetector(
-                  onTap: () => Get.find<HomeController>().logout(),
-                  child: Wrap(
-                    runAlignment: WrapAlignment.center,
+                  content: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Icon(Icons.logout).paddingOnly(right: 5.w),
-                      Text('logout'.tr, style: TextStyles.normal,)
+                      GestureDetector(
+                        onTap: () => Get.find<HomeController>().logout(),
+                        child: Wrap(
+                          runAlignment: WrapAlignment.center,
+                          children: [
+                            Icon(Icons.logout).paddingOnly(right: 5.w),
+                            Text('logout'.tr, style: TextStyles.normal),
+                          ],
+                        ),
+                      ).paddingAll(5),
+                      GestureDetector(
+                        onTap: () => Get.find<HomeController>().deleteDialog(),
+                        child: Wrap(
+                          runAlignment: WrapAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.delete_forever,
+                              color: ColorsUtil.red,
+                            ).paddingOnly(right: 5.w),
+                            Text(
+                              'delete_all_user_data'.tr,
+                              style: TextStyles.normal.copyWith(
+                                color: ColorsUtil.red,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ).paddingAll(5),
                     ],
                   ),
-                ).paddingAll(5)
-                , child: Icon(Icons.more_vert))
+                  child: Icon(Icons.more_vert),
+                ),
               ],
             ).paddingOnly(bottom: 20.h),
             Row(
@@ -47,6 +72,7 @@ class HomeHeadersWidget extends StatelessWidget {
                   child: CustomTextField(
                     onTap: () => controller.openedFilterFun(),
                     padding: EdgeInsets.zero,
+                    enabled: false,
                     prefix: Icon(
                       FontAwesomeIcons.magnifyingGlass,
                       size: 18,
@@ -75,9 +101,10 @@ class HomeHeadersWidget extends StatelessWidget {
             ).paddingOnly(bottom: 20.h),
 
             Obx(
-              () =>  Center(
+              () => Center(
                 child: CustomButton(
-                  onPressed: () => Get.find<HomeController>().randomFoodLookup(),
+                  onPressed:
+                      () => Get.find<HomeController>().randomFoodLookup(),
                   text: 'try_something'.tr,
                   background: ColorsUtil.primary,
                   foreground: ColorsUtil.white,

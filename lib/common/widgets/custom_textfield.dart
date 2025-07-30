@@ -16,6 +16,7 @@ class CustomTextField extends StatelessWidget {
   final EdgeInsets? padding;
   final void Function()? onTap;
   final bool autoFocus;
+  final bool enabled;
   const CustomTextField({
     super.key,
     this.label,
@@ -28,7 +29,12 @@ class CustomTextField extends StatelessWidget {
     this.style,
     this.hidePassword,
     this.suffix,
-    this.textCapitalization, this.padding, this.prefix, this.onTap, this.autoFocus = false
+    this.textCapitalization,
+    this.padding,
+    this.prefix,
+    this.onTap,
+    this.autoFocus = false,
+    this.enabled = true,
   });
 
   @override
@@ -48,6 +54,7 @@ class CustomTextField extends StatelessWidget {
           controller: controller,
           onChanged: onChanged,
           validator: validator,
+          enabled: enabled,
           keyboardType: textInputType,
           style: style ?? TextStyles.normal,
           textCapitalization:
@@ -56,7 +63,10 @@ class CustomTextField extends StatelessWidget {
           decoration: InputDecoration(
             hintText: hint,
             errorText: errorText,
-            hintStyle: TextStyles.normal.copyWith(fontSize: 11.sp, color: ColorsUtil.grey),
+            hintStyle: TextStyles.normal.copyWith(
+              fontSize: 11.sp,
+              color: ColorsUtil.grey,
+            ),
             contentPadding: padding ?? EdgeInsets.all(20),
             suffixIcon: suffix,
             prefix: prefix,

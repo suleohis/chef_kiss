@@ -31,6 +31,13 @@ class $AssetsIconsGen {
   SvgGenImage get categoriesSelectedIcon =>
       const SvgGenImage('assets/icons/categories_selected_icon.svg');
 
+  /// File path: assets/icons/chat_icon.svg
+  SvgGenImage get chatIcon => const SvgGenImage('assets/icons/chat_icon.svg');
+
+  /// File path: assets/icons/chat_selected_icon.svg
+  SvgGenImage get chatSelectedIcon =>
+      const SvgGenImage('assets/icons/chat_selected_icon.svg');
+
   /// File path: assets/icons/home_icon.svg
   SvgGenImage get homeIcon => const SvgGenImage('assets/icons/home_icon.svg');
 
@@ -44,6 +51,8 @@ class $AssetsIconsGen {
         bookmarkSelectedIcon,
         categoriesIcon,
         categoriesSelectedIcon,
+        chatIcon,
+        chatSelectedIcon,
         homeIcon,
         homeSelectedIcon
       ];
@@ -51,6 +60,9 @@ class $AssetsIconsGen {
 
 class $AssetsImagesGen {
   const $AssetsImagesGen();
+
+  /// File path: assets/images/delete.gif
+  AssetGenImage get delete => const AssetGenImage('assets/images/delete.gif');
 
   /// File path: assets/images/facebook_button.png
   AssetGenImage get facebookButton =>
@@ -76,8 +88,15 @@ class $AssetsImagesGen {
       const AssetGenImage('assets/images/splash_logo.png');
 
   /// List of all assets
-  List<AssetGenImage> get values =>
-      [facebookButton, googleButton, noImage, noProfile, splash, splashLogo];
+  List<AssetGenImage> get values => [
+        delete,
+        facebookButton,
+        googleButton,
+        noImage,
+        noProfile,
+        splash,
+        splashLogo
+      ];
 }
 
 class $AssetsTranslationsGen {

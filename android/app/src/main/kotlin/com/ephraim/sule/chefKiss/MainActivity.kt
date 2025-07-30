@@ -1,4 +1,4 @@
-package com.example.recipe_app
+package com.ephraim.sule.chefKiss
 
 import io.flutter.embedding.android.FlutterActivity
 

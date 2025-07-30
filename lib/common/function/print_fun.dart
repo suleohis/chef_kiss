@@ -1,15 +1,18 @@
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:logger/logger.dart';
 
 var logger = Logger();
 
-printError(dynamic data) {
+void printError(dynamic data) {
+    FirebaseCrashlytics.instance.log(data);
     logger.e(data);
 }
 
-printInfo(dynamic data) {
+void printInfo(dynamic data) {
     logger.i(data);
 }
 
-printWarning(dynamic data) {
+void printWarning(dynamic data) {
+    FirebaseCrashlytics.instance.log(data,);
     logger.w(data);
 }

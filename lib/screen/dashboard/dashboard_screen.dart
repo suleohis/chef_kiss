@@ -15,6 +15,7 @@ class DashboardScreen extends StatelessWidget {
           bottomNavigationBar: BottomAppBar(
             elevation: 9,
             shadowColor: Colors.black,
+            surfaceTintColor: ColorsUtil.white,
             color: ColorsUtil.white,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -45,6 +46,16 @@ class DashboardScreen extends StatelessWidget {
                     controller.tabIndex.value == 2
                         ? Assets.icons.categoriesSelectedIcon.path
                         : Assets.icons.categoriesIcon.path,
+                    height: 24.h,
+                    width: 24.w,
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () => controller.changeTab(3),
+                  child: SvgPicture.asset(
+                    controller.tabIndex.value == 3
+                        ? Assets.icons.chatSelectedIcon.path
+                        : Assets.icons.chatIcon.path,
                     height: 24.h,
                     width: 24.w,
                   ),

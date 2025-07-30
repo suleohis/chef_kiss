@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>312088988951-piilsc01im7d4o7qn1i1bmn3quua2ath.apps.googleusercontent.com</string>
+	<string>312088988951-30bugsq1tb0r9eam4b1kt4uc68jq45up.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.312088988951-piilsc01im7d4o7qn1i1bmn3quua2ath</string>
+	<string>com.googleusercontent.apps.312088988951-30bugsq1tb0r9eam4b1kt4uc68jq45up</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>312088988951-jeep29jukftd9geqmcec6uoass1gm3no.apps.googleusercontent.com</string>
+	<string>312088988951-e97lfikg7g7h0ml0sbc7dphnehv27qv3.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>AIzaSyBhBxBjg85NCscIEHcqkHoA8VVQHHs_S4A</string>
 	<key>GCM_SENDER_ID</key>
@@ -15,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.recipeApp</string>
+	<string>com.ephraim.sule.chefKiss</string>
 	<key>PROJECT_ID</key>
 	<string>recipe-app-39f9f</string>
 	<key>STORAGE_BUCKET</key>
@@ -31,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:312088988951:ios:186a4f6009010f8caebb52</string>
+	<string>1:312088988951:ios:ca348881275d0ed7aebb52</string>
 </dict>
 </plist>

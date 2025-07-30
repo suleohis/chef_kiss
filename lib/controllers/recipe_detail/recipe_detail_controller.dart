@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:recipe_app/controllers/home/home_controller.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
@@ -33,7 +34,7 @@ class RecipeDetailController extends GetxController {
   }
 
   ///Add or Remove from bookmark
-  onBookmark() {
+  void onBookmark() {
     if (isBookmark.value) {
       user!.bookmark.remove(meal!.idMeal);
     } else {
@@ -43,7 +44,7 @@ class RecipeDetailController extends GetxController {
   }
 
   /// save User
-  saveUser() async {
+  Future<void> saveUser() async {
     await firebaseRepo.saveUser(user!).then((value) {
       if (value) {
         isBookmark.value = user?.bookmark.contains(meal!.idMeal) ?? false;
@@ -60,13 +61,13 @@ class RecipeDetailController extends GetxController {
   }
 
   /// get User
-  getUser() async {
+  Future<void> getUser() async {
    user = await firebaseRepo.getUser();
    isBookmark.value = user?.bookmark.contains(meal!.idMeal) ?? false;
     update();
   }
 
-  getRecipeData() async {
+  Future<void> getRecipeData() async {
     try {
       if (Get.find<HomeController>().meal != null) {
 
@@ -90,15 +91,24 @@ class RecipeDetailController extends GetxController {
         update();
         if (meal != null && (meal?.strYoutube?.isNotEmpty ?? false)) youtubeInit();
         getUser();
+        await FirebaseAnalytics.instance.logSelectContent(
+          parameters: {
+            "idMeal": meal?.idMeal ?? '',
+            "strMeal": meal?.strMeal ?? '',
+            "strCategory": meal?.strCategory ?? '',
+            "strArea": meal?.strArea ?? '',
+          }, contentType: 'Meal', itemId: meal?.idMeal ?? '',
+        );
       }
+
     } catch (e) {
-      error(title: 'error'.tr, context: Get.context!, message: e.toString());
       isLoading.value = false;
       update();
+      error(title: 'error'.tr, context: Get.context!, message: e.toString());
     }
   }
 
-  youtubeInit() {
+  void youtubeInit() {
     String videoUrl = meal?.strYoutube ?? '';
     final videoId = YoutubePlayer.convertUrlToId(
       videoUrl,
@@ -115,7 +125,7 @@ class RecipeDetailController extends GetxController {
     }
   }
 
-  onTabIndex(int index) {
+  void onTabIndex(int index) {
     tabIndex.value = index;
     update();
   }

@@ -122,10 +122,12 @@ class SearchRecipesScreen extends StatelessWidget {
                                         imageUrl: data.strMealThumb ?? '',
                                         fit: BoxFit.cover,
                                         height: 150.h,
+                                        width: double.maxFinite,
                                         errorWidget:
                                             (_, url, error) => Image.asset(
                                               Assets.images.noImage.path,
                                               height: 150.h,
+                                              width: double.maxFinite,
                                               fit: BoxFit.cover,
                                             ),
                                       ),

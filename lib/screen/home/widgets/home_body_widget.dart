@@ -55,7 +55,7 @@ class HomeBodyWidget extends StatelessWidget {
             ).paddingOnly(bottom: 20.h),
 
             /// Meals
-            controller.isLoadingCategory
+            controller.isLoadingMeal
                 ? HomeMealShimmerWidget()
                 : controller.meals.isEmpty ?
                   Center(

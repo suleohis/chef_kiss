@@ -2,7 +2,7 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 
 import '../../util/app_export.dart';
 
-success({
+void success({
   required BuildContext context,
   required String title,
   required String message,
@@ -24,7 +24,7 @@ success({
     ..showSnackBar(snackBar);
 }
 
-error({
+void error({
   required BuildContext context,
   required String title,
   required String message,
@@ -46,7 +46,7 @@ error({
     ..showSnackBar(snackBar);
 }
 
-warning({
+void warning({
   required BuildContext context,
   required String title,
   required String message,

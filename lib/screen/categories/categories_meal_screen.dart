@@ -36,8 +36,6 @@ class CategoriesMealScreen extends StatelessWidget {
                   ),
                 ).paddingSymmetric(horizontal: 30.w, vertical: 30.h)
                 : AlignedGridView.count(
-                  physics: NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
                   crossAxisCount: 2,
                   crossAxisSpacing: 15.w,
                   mainAxisSpacing: 15.h,

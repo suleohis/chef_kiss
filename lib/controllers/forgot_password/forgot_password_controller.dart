@@ -27,14 +27,14 @@ class ForgotPasswordController extends GetxController {
       update();
       Get.offAllNamed(RouteHelper.login);
     } catch (e) {
+      isLoading = false;
+      update();
       error(
         context: Get.context!,
         title: 'reset_failed'.tr,
         message: e.toString(),
       );
       printError(e);
-      isLoading = false;
-      update();
     }
   }
 }

@@ -21,4 +21,5 @@ class ConstUtil {
   static const String name = 'name';
   static const String email = 'email';
   static const String bookmark = 'bookmark';
+  static const String aiRecipes = 'aiRecipes';
 }

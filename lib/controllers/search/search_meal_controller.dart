@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:recipe_app/controllers/home/home_controller.dart';
 import 'package:recipe_app/data/models/list_items/area_list_item.dart';
@@ -47,7 +48,7 @@ class SearchMealController extends GetxController {
 
 
   /// Select Category
-  selectCategory(index) {
+  void selectCategory(int index) async{
     if (selectedCategory?.strCategory != categories[index].strCategory) {
       catIndex = index;
       areaIndex = null;
@@ -59,10 +60,14 @@ class SearchMealController extends GetxController {
       getMealsData();
       update();
     }
+
+    await FirebaseAnalytics.instance.logSearch(
+      searchTerm: selectedCategory?.strCategory ?? '',
+    );
   }
 
   /// Select Area
-  selectArea(index) {
+  void selectArea(int index) async{
     if (selectedArea?.strArea != areas[index].strArea) {
       catIndex = null;
       areaIndex = index;
@@ -74,9 +79,13 @@ class SearchMealController extends GetxController {
       getMealsData();
       update();
     }
+
+    await FirebaseAnalytics.instance.logSearch(
+      searchTerm: selectedArea?.strArea ?? '',
+    );
   }
 
-  searchMeal(String value) {
+  void searchMeal(String value) {
     filterMeals =
         meals
             .where(
@@ -88,7 +97,7 @@ class SearchMealController extends GetxController {
   }
 
   /// Select Ingredient
-  selectIngredient(index) {
+  void selectIngredient (int index) async{
     if (selectedIngred?.strIngredient != ingredients[index].strIngredient) {
       catIndex = null;
       areaIndex = null;
@@ -100,10 +109,17 @@ class SearchMealController extends GetxController {
       getMealsData();
       update();
     }
+
+    await FirebaseAnalytics.instance.logSearch(
+      parameters: {
+        'idIngredient': selectedIngred?.idIngredient ?? ''
+      },
+      searchTerm: selectedIngred?.strIngredient ?? '',
+    );
   }
 
   /// Get Categories
-  getCategoriesData() async {
+  Future<void> getCategoriesData() async {
     try {
       if (categories.isNotEmpty) {
         return;
@@ -130,14 +146,14 @@ class SearchMealController extends GetxController {
         update();
       }
     } catch (e) {
-      error(title: 'error'.tr, context: Get.context!, message: e.toString());
       isLoadingCategory = false;
       update();
+      error(title: 'error'.tr, context: Get.context!, message: e.toString());
     }
   }
 
   /// Get Areas
-  getAreasData() async {
+  Future<void> getAreasData() async {
     try {
       if (areas.isNotEmpty) {
         return;
@@ -163,14 +179,14 @@ class SearchMealController extends GetxController {
         update();
       }
     } catch (e) {
-      error(title: 'error'.tr, context: Get.context!, message: e.toString());
       isLoadingArea = false;
       update();
+      error(title: 'error'.tr, context: Get.context!, message: e.toString());
     }
   }
 
   /// Get Ingredients
-  getIngredientsData() async {
+  Future<void> getIngredientsData() async {
     try {
       if (ingredients.isNotEmpty) {
         return;
@@ -196,14 +212,14 @@ class SearchMealController extends GetxController {
         update();
       }
     } catch (e) {
-      error(title: 'error'.tr, context: Get.context!, message: e.toString());
       isLoadingIngredient = false;
       update();
+      error(title: 'error'.tr, context: Get.context!, message: e.toString());
     }
   }
 
   /// Get Meals Data
-  getMealsData() async {
+  Future<void> getMealsData() async {
     try {
       isLoadingMeal = true;
       update();
@@ -232,14 +248,14 @@ class SearchMealController extends GetxController {
         update();
       }
     } catch (e) {
-      error(title: 'error'.tr, context: Get.context!, message: e.toString());
       isLoadingMeal = false;
       update();
+      error(title: 'error'.tr, context: Get.context!, message: e.toString());
     }
   }
 
   ///Pop Menu
-  openedFilterFun([bool open = false]) {
+  void openedFilterFun([bool open = false]) {
     Get.toNamed(RouteHelper.searchRecipe);
     if (open) {
       Future.delayed(
@@ -391,7 +407,7 @@ class SearchMealController extends GetxController {
     );
   }
 
-  filterShimmer() {
+  Wrap filterShimmer() {
     return Wrap(
       children: List.generate(6, (index) {
         return Shimmer(

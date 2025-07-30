@@ -67,5 +67,16 @@
   "try_something": "Try something new today",
   "empty_list": "Nothing Found!",
   "logout": "Logout",
-  "logout_successful": "Logout Successfully"
+  "logout_successful": "Logout Successfully",
+  "delete_all_user_data": "Delete All User Data",
+  "delete_all_user_data_successful": "Deleted All User's Data Successfully",
+  "delete_all_user_data_failed": "Deleted All User's Data Failed",
+  "re_auth_required_message": "Re-Authentication Needed Message",
+  "firebase_auth_error": "Firebase Auth Error",
+  "delete_forever_title": "Permanently Delete Account?",
+  "delete_forever_content": "This action will permanently delete all your account information (name, email) from our servers and clear all local app data (like bookmarks) from your device. This cannot be undone.",
+  "recipe_response_view_error": "RecipeResponseView: Failed to parse as structured MealResponse, showing as plain text:",
+  "add_recipe": "Add Recipe",
+  "delete_recipe": "Delete Recipe",
+  "youtube": "Youtube"
 }

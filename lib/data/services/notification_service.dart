@@ -168,7 +168,6 @@ class NotificationService {
   // Helper to get the next instance of a specific time in the local timezone
   tz.TZDateTime _nextInstanceOfTime(DateTime time) {
     final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
-    print(tz.local);
     tz.TZDateTime scheduledDate = tz.TZDateTime(
       tz.local,
       now.year,

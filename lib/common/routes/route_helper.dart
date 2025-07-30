@@ -4,6 +4,7 @@ import 'package:recipe_app/screen/auth/login_screen.dart';
 import 'package:recipe_app/screen/auth/sign_up_screen.dart';
 import 'package:recipe_app/screen/categories/categories_meal_screen.dart';
 import 'package:recipe_app/screen/dashboard/dashboard_screen.dart';
+import 'package:recipe_app/screen/recipe_ai/edit_recipe_page.dart';
 import 'package:recipe_app/screen/recipe_detail/recipe_detail_screen.dart';
 import 'package:recipe_app/screen/search_recipes/search_recipes_screen.dart';
 import 'package:recipe_app/screen/splash/splash_screen.dart';
@@ -20,6 +21,7 @@ class RouteHelper {
   static const searchRecipe = '/searchRecipe';
   static const recipeDetail = '/recipeDetail';
   static const categoriesMeal = '/categoriesMeal';
+  static const editAIRecipe = '/editAIRecipe';
 
   static List<GetPage> pages = [
     GetPage(name: splash, binding: SplashBinding(), page: () => SplashScreen()),
@@ -40,6 +42,12 @@ class RouteHelper {
       name: recipeDetail,
       binding: RecipeDetailBinding(),
       page: () => RecipeDetailScreen(),
+    ),
+
+    /// Edit Recipe Detail
+    GetPage(
+      name: editAIRecipe,
+      page: () => EditRecipePage(),
     ),
     
     /// Category Meal
