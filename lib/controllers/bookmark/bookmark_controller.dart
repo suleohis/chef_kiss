@@ -17,6 +17,7 @@ class BookmarkController extends GetxController {
 
   Future<void> onRefresh() async {
     Get.find<HomeController>().getUser();
+    user = Get.find<HomeController>().user;
     getBookmarkData();
   }
 
@@ -33,7 +34,7 @@ class BookmarkController extends GetxController {
             responseModel.responseJson,
           );
 
-          meals = response.meals ?? [];
+          meals.addAll(response.meals ?? []);
           isLoading = false;
           update();
         }
