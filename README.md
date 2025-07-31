@@ -2,167 +2,139 @@
 
 ## 🌟 Project Overview
 
-**Chef Kiss** is a delightful and intuitive mobile application built with Flutter, designed to help food enthusiasts discover, explore, and manage a vast collection of delicious meal recipes. Leveraging the comprehensive TheMealDB API, the app provides a seamless experience for searching meals, Browse by category or ingredient, viewing detailed cooking instructions, and saving favorite recipes for quick access.
+**Chef Kiss** is a delightful and intuitive mobile application built with Flutter, designed to help food enthusiasts discover, explore, and manage a vast collection of delicious meal recipes. Leveraging the comprehensive TheMealDB API, the app provides a seamless experience for searching meals, browsing by category or ingredient, viewing detailed cooking instructions, and saving favorite recipes for quick access.
 
-This project focuses on delivering a clean, modern UI, efficient data handling, and robust state management using GetX, ensuring a smooth and responsive user experience across various devices.
+Chef Kiss delivers a clean, modern UI, efficient data handling, and robust state management using GetX, ensuring a smooth and responsive user experience across various devices.
+
+---
 
 ## ✨ Features
 
-* **Extensive Meal Search:** Quickly find recipes by meal name or by their first letter.
-* **Categorized Browse:** Explore meals neatly organized into categories (e.g., Seafood, Dessert, Breakfast).
-* **Ingredient-Based Filtering:** Discover recipes using specific ingredients you have on hand (e.g., Chicken, Pasta, Rice).
-* **Detailed Recipe View:** Get comprehensive information for each meal, including:
-    * Step-by-step cooking instructions.
-    * A structured list of ingredients with their respective measures.
-    * A direct link to a YouTube video for cooking guidance.
-* **Local Bookmarking:** Save your favorite recipes locally for offline access and quick retrieval.
-* **Responsive UI:** Optimized for various screen sizes and orientations using `flutter_screenutil`.
-* **Daily Meal Reminders:** Stay engaged with daily local notifications to inspire your cooking.
-* **Robust State Management:** Powered by GetX for efficient and scalable state management.
-* **Efficient Image Loading:** Utilizes `cached_network_image` for smooth image display and caching.
+- **Extensive Meal Search:** Quickly find recipes by meal name or by their first letter.
+- **Categorized Browse:** Explore meals neatly organized into categories (e.g., Seafood, Dessert, Breakfast).
+- **Ingredient-Based Filtering:** Discover recipes using specific ingredients you have on hand (e.g., Chicken, Pasta, Rice).
+- **Detailed Recipe View:** Get comprehensive information for each meal, including:
+    - Step-by-step cooking instructions.
+    - A structured list of ingredients with their respective measures.
+    - A direct link to a YouTube video for cooking guidance.
+- **Local Bookmarking:** Save your favorite recipes locally for offline access and quick retrieval.
+- **Responsive UI:** Optimized for various screen sizes and orientations using `flutter_screenutil`.
+- **Daily Meal Reminders:** Stay engaged with daily local notifications to inspire your cooking.
+- **Robust State Management:** Powered by GetX for efficient and scalable state management.
+- **Efficient Image Loading:** Utilizes `cached_network_image` for smooth image display and caching.
+- **Authentication:** Sign in/up with email/password, Google, or Facebook; secure user sessions via Firebase Auth.
+- **User Data Management:** Option to delete all user data (including Firebase account deletion).
+- **Custom Snackbars and Popups:** Enhanced feedback via animated snackbars and configurable popups.
+- **AI Integration:** Experimental support for recipe suggestions and enhancements using AI plugins.
+- **AI-Powered Recipe Editor:** Use the `Recipe AI` module (`recipe_ai_screen.dart`) to generate, edit, and enhance recipes using AI.
+- **Offline Support:** Bookmarks and some app data available without an internet connection.
+
+---
 
 ## 🚀 Screens & Functionality
 
 The application is structured into several key modules, each representing a distinct user interface and set of functionalities:
 
-### 1. Splash Screen
-
-* **Purpose:** The initial screen displayed when the app launches. Used for quick setup, checking authentication status, or loading initial data before navigating to the main content.
-* **How it works:** A brief visual introduction to the app.
-
-![Splash Screen](assets/screenshots/splash_screen.png)
-*(Please replace with your actual Splash Screen screenshot)*
-
-### 2. Authentication Screen (Sign In / Sign Up)
-
-* **Purpose:** Allows users to sign in to their existing account or create a new one. This typically involves email/password or social logins.
-* **How it works:** Provides input fields for user credentials and handles the authentication flow.
-
-![Authentication Screen](assets/screenshots/auth_screen.png)
-*(Please replace with your actual Authentication Screen screenshot)*
-
-### 3. Home/Dashboard Screen
-
-* **Purpose:** The central hub of the application, offering various ways to discover meals.
-* **How it works:** Displays categories, possibly trending meals, and provides a prominent search bar to find recipes.
-
-![Home Screen](assets/screenshots/home_screen.png)
-*(Please replace with your actual Home Screen screenshot)*
-
-### 4. Meal List / Category & Ingredient Filter Screens
-
-* **Purpose:** Displays meals filtered by a chosen category (e.g., "Seafood") or a specific ingredient (e.g., "Chicken").
-* **How it works:** Presents meals in a scrollable grid layout (`AlignedGridView`), allowing users to browse items efficiently. Tapping on a meal navigates to its detail screen.
-
-![Category/Ingredient Filter Screen](assets/screenshots/filter_screen.png)
-*(Please replace with your actual Category/Ingredient Filter Screen screenshot)*
-
-### 5. Recipe Detail Screen
-
-* **Purpose:** Provides an in-depth view of a selected meal's recipe.
-* **How it works:** Displays a large image of the meal, its category, location, detailed step-by-step instructions, and a clearly laid-out list of ingredients with their respective measurements. It also includes a button to watch the cooking video on YouTube.
-
-![Recipe Detail Screen](assets/screenshots/recipe_detail_screen.png)
-*(Please replace with your actual Recipe Detail Screen screenshot)*
-
-### 6. Bookmarks Screen
-
-* **Purpose:** Allows users to view and manage their saved (bookmarked) recipes.
-* **How it works:** Displays a list or grid of all recipes the user has marked as favorites, providing quick access without needing to search again.
-
-![Bookmarks Screen](assets/screenshots/bookmarks_screen.png)
-*(Please replace with your actual Bookmarks Screen screenshot)*
+1. **Splash Screen:** Initial app launch, authentication check, and data preloading.
+2. **Authentication:** Email/password, Google, or Facebook sign in/up.
+3. **Home/Dashboard:** Discover meals by search, category, or ingredient; shows welcome message; “Try Something New” randomizer.
+4. **Meal List / Category & Ingredient Filter Screens:** Browse meals in a scrollable, responsive grid.
+5. **Recipe Detail:** Large recipe image, category, origin, step-by-step instructions, ingredients, and a YouTube guide.
+6. **Bookmarks:** Manage saved recipes for easy offline retrieval.
+7. **Recipe AI Screen:** Create, edit, and enhance recipes via AI in [`lib/screen/recipe_ai/recipe_ai_screen.dart`](https://github.com/suleohis/chef_kiss/blob/main/lib/screen/recipe_ai/recipe_ai_screen.dart).
+8. **Profile & Settings:** Manage profile, notification preferences, and privacy options.
 
 ---
 
-## 🛠️ Technologies Used
+## 🛠️ Technologies & Dependencies
 
-* **Framework:** Flutter
-* **Language:** Dart
-* **State Management:** [GetX](https://pub.dev/packages/get)
-* **API Integration:** [http](https://pub.dev/packages/http)
-* **Image Loading & Caching:** [cached_network_image](https://pub.dev/packages/cached_network_image)
-* **Responsive UI:** [flutter_screenutil](https://pub.dev/packages/flutter_screenutil)
-* **Grid Layouts:** [flutter_staggered_grid_view](https://pub.dev/packages/flutter_staggered_grid_view)
-* **Local Notifications:** [flutter_local_notifications](https://pub.dev/packages/flutter_local_notifications)
-* **Timezone Handling:** [timezone](https://pub.dev/packages/timezone)
-* **Permissions Handling:** [permission_handler](https://pub.dev/packages/permission_handler)
-* **External API:** [TheMealDB.com](https://www.themealdb.com/api.php)
+- **Framework:** Flutter (Dart)
+- **State Management:** [GetX](https://pub.dev/packages/get)
+- **Backend & Auth:** [Firebase (core, auth, firestore, storage, analytics, crashlytics, performance)](https://firebase.google.com/)
+- **Social Auth:** [Google Sign-In](https://pub.dev/packages/google_sign_in), [Flutter Facebook Auth](https://pub.dev/packages/flutter_facebook_auth)
+- **API Integration:** [http](https://pub.dev/packages/http), [dio](https://pub.dev/packages/dio)
+- **Image Loading:** [cached_network_image](https://pub.dev/packages/cached_network_image), [flutter_svg](https://pub.dev/packages/flutter_svg)
+- **UI & UX:** [flutter_screenutil](https://pub.dev/packages/flutter_screenutil), [google_fonts](https://pub.dev/packages/google_fonts), [awesome_snackbar_content](https://pub.dev/packages/awesome_snackbar_content), [giffy_dialog](https://pub.dev/packages/giffy_dialog), [shimmer_animation](https://pub.dev/packages/shimmer_animation), [readmore](https://pub.dev/packages/readmore)
+- **Grid Layouts:** [flutter_staggered_grid_view](https://pub.dev/packages/flutter_staggered_grid_view)
+- **Local Storage:** [shared_preferences](https://pub.dev/packages/shared_preferences)
+- **Notifications:** [flutter_local_notifications](https://pub.dev/packages/flutter_local_notifications)
+- **Timezone Handling:** [timezone](https://pub.dev/packages/timezone), [flutter_timezone](https://pub.dev/packages/flutter_timezone)
+- **Permissions:** [permission_handler](https://pub.dev/packages/permission_handler)
+- **AI & Generative Features:** [flutter_ai_toolkit](https://pub.dev/packages/flutter_ai_toolkit), [firebase_ai](https://pub.dev/packages/firebase_ai), [google_generative_ai](https://pub.dev/packages/google_generative_ai)
+- **Others:** [youtube_player_flutter](https://pub.dev/packages/youtube_player_flutter), [uuid](https://pub.dev/packages/uuid), [logger](https://pub.dev/packages/logger), [url_launcher](https://pub.dev/packages/url_launcher), [flutter_markdown_plus](https://pub.dev/packages/flutter_markdown_plus), [split_view](https://pub.dev/packages/split_view)
 
 ---
 
 ## 📂 Project Structure
 
-The project follows a modular and clean architecture for better organization and scalability:
-recipe_app/
-├── lib/
-│   ├── data/
-│   │   ├── models/           # Dart models for API responses (e.g., Meal, Category, FilteredMealItem)
-│   │   ├── services/         # API service classes (e.g., MealApiService)
-│   ├── modules/              # Core application modules/features
-│   │   ├── auth/             # Authentication screens and logic
-│   │   ├── home/             # Main dashboard and navigation
-│   │   ├── recipe_detail/    # Detailed recipe view
-│   │   ├── bookmark/         # Bookmarked recipes management
-│   │   ├── category_meal/    # Meals filtered by category
-│   │   ├── ingredient_meal/  # Meals filtered by ingredient
-│   │   ├── profile/          # User profile and settings
-│   │   ├── onboarding/       # Onboarding screens
-│   │   ├── splash/           # Splash screen
-│   │   └── ...
-│   ├── routes/               # GetX routing definitions (app_pages.dart, app_routes.dart)
-│   ├── utils/                # Utility classes (e.g., constants, text styles, color utils)
-│   ├── main.dart             # Application entry point
-│   └── ...
+```
+chef_kiss/
+└── lib/
+    ├── data/
+    │   ├── models/                 # Dart models for API responses
+    │   └── services/               # API service classes
+    ├── screen/
+    │   ├── auth/                   # Authentication screens and logic
+    │   ├── bookmark/               # Bookmarked recipes management
+    │   ├── categories/             # Browse categories
+    │   ├── dashboard/              # Main dashboard and navigation
+    │   ├── home/                   # Home screen
+    │   ├── notification/           # Local notifications and reminders
+    │   ├── recipe_ai/              # AI-powered recipe creation and editing
+    │   │   ├── widgets/
+    │   │   ├── edit_recipe_page.dart
+    │   │   ├── recipe_ai_screen.dart   # Main AI recipe screen
+    │   │   └── split_or_tabs.dart
+    │   ├── recipe_detail/          # Detailed recipe views
+    │   ├── search_recipes/         # Search functionality
+    │   ├── splash/                 # Splash screen
+    │   └── util/                   # Utility screens and helpers
+    ├── routes/                     # GetX routing definitions
+    ├── utils/                      # Utility classes (constants, styles, etc.)
+    ├── main.dart                   # Application entry point
+    └── ...
 ├── assets/
-│   ├── images/               # App images and placeholders
-│   ├── icons/                # SVG icons and other icon assets
-│   └── ...
-├── pubspec.yaml              # Project dependencies and metadata
-├── README.md                 # This documentation file
+│   ├── images/
+│   └── icons/
+├── pubspec.yaml
+├── README.md
 └── ...
+```
+
+**Notable File:**
+- [`lib/screen/recipe_ai/recipe_ai_screen.dart`](https://github.com/suleohis/chef_kiss/blob/main/lib/screen/recipe_ai/recipe_ai_screen.dart): The main AI-powered recipe editing and generation screen.
 
 ---
 
 ## 🛠️ Getting Started
 
-Follow these steps to set up and run the **Chef Kiss** application on your local machine.
-
 ### Download APK (Android)
-
-You can download the latest Android application package (APK) directly from Google Drive:
-
-* **[Download Chef Kiss APK](https://drive.google.com/file/d/1w84ADyqNKT8PdhkngrqPDRUNYRPksGks/view?usp=drive_link)**
-
-    *(**Note:** Ensure your device allows installation from unknown sources if downloading directly.)*
+Download the latest APK:  
+[Chef Kiss APK (Google Drive)](https://drive.google.com/file/d/1w84ADyqNKT8PdhkngrqPDRUNYRPksGks/view?usp=drive_link)  
+_**Note:** Allow installation from unknown sources if downloading directly._
 
 ### Prerequisites
 
-* **Flutter SDK:** Make sure you have Flutter installed. You can download it from [flutter.dev](https://flutter.dev/docs/get-started/install).
-* **Dart SDK:** (Comes with Flutter SDK)
-* **IDE:** Visual Studio Code with Flutter extension, or Android Studio with Flutter/Dart plugins.
+- **Flutter SDK:** [Install Flutter](https://flutter.dev/docs/get-started/install)
+- **Dart SDK:** (bundled with Flutter)
+- **IDE:** VS Code (Flutter extension) or Android Studio (Flutter/Dart plugins)
 
 ### Installation
 
-1.  **Clone the repository:**
+1. **Clone the repository:**
     ```bash
-    git clone [https://github.com/suleohis/recipe_app.git](https://github.com/suleohis/recipe_app.git)
-    cd recipe_app
+    git clone https://github.com/suleohis/chef_kiss.git
+    cd chef_kiss
     ```
-
-2.  **Install dependencies:**
+2. **Install dependencies:**
     ```bash
     flutter pub get
     ```
-
-### Running the App
-
-1.  **Connect a device or start an emulator/simulator.**
-2.  **Run the application:**
+3. **Connect a device or start an emulator/simulator.**
+4. **Run the app:**
     ```bash
     flutter run
     ```
-    Or use the "Run" option in your IDE.
 
 ---
 
@@ -170,11 +142,11 @@ You can download the latest Android application package (APK) directly from Goog
 
 Contributions are welcome! If you have suggestions for improvements, new features, or bug fixes, please open an issue or submit a pull request.
 
-1.  Fork the repository.
-2.  Create your feature branch (`git checkout -b feature/AmazingFeature`).
-3.  Commit your changes (`git commit -m 'Add some AmazingFeature'`).
-4.  Push to the branch (`git push origin feature/AmazingFeature`).
-5.  Open a Pull Request.
+1. Fork the repository.
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`).
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`).
+4. Push to the branch (`git push origin feature/AmazingFeature`).
+5. Open a Pull Request.
 
 ---
 
@@ -184,5 +156,18 @@ This project is licensed under the MIT License. See the `LICENSE` file for more 
 
 ---
 
-# To save the images in assets
-dart run build_runner build
+## 🏗️ Dev Tools & Code Generation
+
+- Run code generation for assets:
+    ```bash
+    dart run build_runner build
+    ```
+
+---
+
+## 📚 More Info
+
+- For a full list of dependencies and plugins, see [`pubspec.yaml`](pubspec.yaml).
+- For advanced settings or troubleshooting, review the source code or open an issue.
+
+---
