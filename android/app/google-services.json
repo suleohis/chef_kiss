@@ -22,6 +22,14 @@
           }
         },
         {
+          "client_id": "312088988951-i13c11td0k998mob6sd95dm8agu5v61j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ephraim.sule.chefKiss",
+            "certificate_hash": "c9dc3b9da9abc6d3bef4aa78fd66a48dd94c17f8"
+          }
+        },
+        {
           "client_id": "312088988951-2kcbqt4rkpnipaavk4h4riqt0gb1kq35.apps.googleusercontent.com",
           "client_type": 3
         }

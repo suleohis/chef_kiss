@@ -48,14 +48,6 @@ void main() async {
       payload: 'daily_lunch_reminder',
     );
 
-    // Dinner Reminder (e.g., 7:00 PM)
-    await NotificationService().scheduleDailyNotification(
-      102, // Unique ID for Dinner notification
-      '🍽️ Dinner Time!',
-      'Evening! Time to cook up a fantastic dinner. Find your next favorite recipe!',
-      DateTime(2025, 5, 2, 19, 0, 0), // 7:00 PM
-      payload: 'daily_dinner_reminder',
-    );
 
     // --- End of Notification Scheduling ---
   });
