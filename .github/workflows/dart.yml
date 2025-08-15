@@ -20,7 +20,7 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-          flutter-version: '3.7.0'
+          flutter-version: '3.19.6'
 
       # Step 3: Installs the project dependencies. This is equivalent to running 'flutter pub get'.
       - name: Install dependencies
