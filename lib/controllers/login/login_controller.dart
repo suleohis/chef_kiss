@@ -77,23 +77,27 @@ class LoginController extends GetxController {
   Future<UserModel?> googleLogin() async {
     try {
       FirebaseAuth firebaseAuth = FirebaseAuth.instance;
-      GoogleSignIn googleSignIn = GoogleSignIn();
+      GoogleSignIn googleSignIn = GoogleSignIn.instance;
 
+      googleSignIn.initialize(
+        // clientId: 'YOUR_IOS_CLIENT_ID',         // for iOS/macOS
+        serverClientId: '1070581557056-k26adbrv2ajprv2spg1b6ft684detu1r.apps.googleusercontent.com',   // required on Android
+      );
       ///Sign in with google
-      GoogleSignInAccount? googleUser = await googleSignIn.signIn().catchError(
+      GoogleSignInAccount? googleUser = await googleSignIn.authenticate().catchError(
         (e) => throw e,
       );
 
-      if (googleUser == null) throw 'something_wrong'.tr;
+      if (googleUser.email.isEmpty) throw 'something_wrong'.tr;
 
       ///Get auth info
-      final GoogleSignInAuthentication googleAuth = await googleUser
-          .authentication
-          .catchError((e) => throw e);
+      // final GoogleSignInAuthentication googleAuth = await googleUser
+      //     .au
+      //     .catchError((e) => throw e);
 
       final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken,
+        // accessToken: googleAuth.,
+        idToken: googleUser.authentication.idToken,
       );
 
       // Sign in to Firebase with the Google credential.
@@ -160,7 +164,8 @@ class LoginController extends GetxController {
         title: 'signUp_failed'.tr,
         message: e.toString(),
       );
-      printError(e);
+      print(e);
+      printError(e.toString());
       return null;
     }
   }

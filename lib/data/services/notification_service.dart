@@ -24,6 +24,8 @@ class NotificationService {
     tz.initializeTimeZones();
     // Set the local location to your device's current timezone
     tz.setLocalLocation(tz.getLocation(await _getLocalTimezone()));
+    print('time zone');
+    print(await _getLocalTimezone());
 
     // Android initialization settings
     const AndroidInitializationSettings initializationSettingsAndroid =
@@ -45,9 +47,8 @@ class NotificationService {
     );
 
     await flutterLocalNotificationsPlugin.initialize(
-      initializationSettings,
       onDidReceiveNotificationResponse: onDidReceiveNotificationResponse,
-      onDidReceiveBackgroundNotificationResponse: onDidReceiveBackgroundNotificationResponse,
+      onDidReceiveBackgroundNotificationResponse: onDidReceiveBackgroundNotificationResponse, settings: initializationSettings,
     );
 
     // Request permissions for Android 13+
@@ -56,8 +57,8 @@ class NotificationService {
 
   Future<String> _getLocalTimezone() async {
     try {
-      final String timezoneName = await FlutterTimezone.getLocalTimezone();
-      return timezoneName;
+      final TimezoneInfo timezoneName = await FlutterTimezone.getLocalTimezone();
+      return timezoneName.toString();
     } catch (e) {
       printError("Could not get native timezone: $e"); // Use printError from your utils
       return 'Etc/UTC'; // Fallback to UTC if native timezone cannot be determined
@@ -101,7 +102,8 @@ class NotificationService {
   // Callback for background notifications (Android only, requires @pragma('vm:entry-point'))
   @pragma('vm:entry-point')
   static void onDidReceiveBackgroundNotificationResponse(
-      NotificationResponse notificationResponse) async {
+      NotificationResponse notificationResponse)
+  async {
     final String? payload = notificationResponse.payload;
     if (notificationResponse.payload != null) {
       debugPrint('Background Notification payload: $payload');
@@ -131,10 +133,10 @@ class NotificationService {
       macOS: darwinPlatformChannelSpecifics,
     );
     await flutterLocalNotificationsPlugin.show(
-      id,
-      title,
-      body,
-      platformChannelSpecifics,
+      id: id,
+     title:  title,
+     body:  body,
+      notificationDetails: platformChannelSpecifics,
       payload: payload,
     );
   }
@@ -144,20 +146,22 @@ class NotificationService {
       int id, String title, String body, DateTime time,
       {String? payload}) async {
     await flutterLocalNotificationsPlugin.zonedSchedule(
-      id,
-      title,
-      body,
-      _nextInstanceOfTime(time), // Calculate the next instance of the desired time
-      const NotificationDetails(
-        android: AndroidNotificationDetails(
-          'recipe_app_project', // Unique channel ID
-          'Daily Meal Reminders',
-          channelDescription: 'Notifications for daily meal reminders',
-          importance: Importance.max,
-          priority: Priority.high,
-        ),
-        iOS: DarwinNotificationDetails(),
-      ),
+      id: id, scheduledDate: _nextInstanceOfTime(time),
+
+      title: title,
+      body: body,
+       // Calculate the next instance of the desired time
+
+      notificationDetails: const NotificationDetails(
+      android: AndroidNotificationDetails(
+    'recipe_app_project', // Unique channel ID
+    'Daily Meal Reminders',
+      channelDescription: 'Notifications for daily meal reminders',
+      importance: Importance.max,
+      priority: Priority.high,
+    ),
+    iOS: DarwinNotificationDetails(),
+    ),
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
       matchDateTimeComponents: DateTimeComponents.time, // This makes it repeat daily at the specified time
       payload: payload,
@@ -187,7 +191,7 @@ class NotificationService {
 
   // Cancel a specific scheduled notification
   Future<void> cancelNotification(int id) async {
-    await flutterLocalNotificationsPlugin.cancel(id);
+    await flutterLocalNotificationsPlugin.cancel(id: id);
     printInfo('Canceled notification with ID: $id');
   }
 

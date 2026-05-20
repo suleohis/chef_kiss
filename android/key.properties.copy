@@ -1,0 +1,4 @@
+storePassword=recipe
+keyPassword=recipe
+keyAlias=upload
+storeFile=upload-keystore.jks

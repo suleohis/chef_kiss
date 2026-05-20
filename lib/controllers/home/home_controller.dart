@@ -134,8 +134,9 @@ class HomeController extends GetxController {
   Future<void> logout() async {
     try {
       FirebaseAuth auth = FirebaseAuth.instance;
-      GoogleSignIn google = GoogleSignIn();
-      bool isSignedIn = await google.isSignedIn();
+      GoogleSignIn google = GoogleSignIn.instance;
+      GoogleSignInAccount? googleUser = await google.authenticate();
+      bool isSignedIn = googleUser.email.isNotEmpty;
       if (isSignedIn) await google.signOut();
       await auth.signOut();
 
@@ -194,7 +195,7 @@ class HomeController extends GetxController {
   Future<void> deleteAllUserData() async {
     try {
       final FirebaseAuth auth = FirebaseAuth.instance;
-      final GoogleSignIn google = GoogleSignIn();
+      final GoogleSignIn google = GoogleSignIn.instance;
 
       await firebaseRepo.deleteUser();
 
@@ -205,7 +206,9 @@ class HomeController extends GetxController {
         printError("No Firebase user found to delete or already deleted.");
       }
 
-      final bool isSignedInWithGoogle = await google.isSignedIn();
+
+    GoogleSignInAccount? googleUser = await google.authenticate();
+      final bool isSignedInWithGoogle = googleUser.email.isNotEmpty;
       if (isSignedInWithGoogle) {
         await google.disconnect();
       }

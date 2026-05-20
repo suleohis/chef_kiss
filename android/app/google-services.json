@@ -1,53 +1,37 @@
 {
   "project_info": {
-    "project_number": "312088988951",
-    "project_id": "recipe-app-39f9f",
-    "storage_bucket": "recipe-app-39f9f.firebasestorage.app"
+    "project_number": "672245011301",
+    "project_id": "chefkiss-8258f",
+    "storage_bucket": "chefkiss-8258f.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:312088988951:android:7b277723c945aa42aebb52",
+        "mobilesdk_app_id": "1:672245011301:android:10b7d32ca839827f50878c",
         "android_client_info": {
-          "package_name": "com.ephraim.sule.chefKiss"
+          "package_name": "com.ephraim.chefKiss"
         }
       },
       "oauth_client": [
         {
-          "client_id": "312088988951-e97lfikg7g7h0ml0sbc7dphnehv27qv3.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.ephraim.sule.chefKiss",
-            "certificate_hash": "20fc3fb9272a3d804e97a2b59f33b62e6ce2fb98"
-          }
-        },
-        {
-          "client_id": "312088988951-i13c11td0k998mob6sd95dm8agu5v61j.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.ephraim.sule.chefKiss",
-            "certificate_hash": "c9dc3b9da9abc6d3bef4aa78fd66a48dd94c17f8"
-          }
-        },
-        {
-          "client_id": "312088988951-2kcbqt4rkpnipaavk4h4riqt0gb1kq35.apps.googleusercontent.com",
+          "client_id": "672245011301-lca78p0ok4n7q54at8n7tj0271bqn2jm.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBoIR-x2cwTvzbMt2l_WChSTNOsHYHnoNg"
+          "current_key": "AIzaSyClbiQ15Bi8Ef639wk9eM3syvlhpB_D3pA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "312088988951-2kcbqt4rkpnipaavk4h4riqt0gb1kq35.apps.googleusercontent.com",
+              "client_id": "672245011301-lca78p0ok4n7q54at8n7tj0271bqn2jm.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "312088988951-30bugsq1tb0r9eam4b1kt4uc68jq45up.apps.googleusercontent.com",
+              "client_id": "672245011301-66ddlnjn2s70i0tui8ipspahoj7vucb5.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
                 "bundle_id": "com.ephraim.sule.chefKiss"
@@ -59,39 +43,31 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:312088988951:android:49cd79da35a543fcaebb52",
+        "mobilesdk_app_id": "1:672245011301:android:29076fd3e830a18850878c",
         "android_client_info": {
-          "package_name": "com.example.recipe_app"
+          "package_name": "com.ephraim.sule.chefKiss"
         }
       },
       "oauth_client": [
         {
-          "client_id": "312088988951-jeep29jukftd9geqmcec6uoass1gm3no.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.recipe_app",
-            "certificate_hash": "20fc3fb9272a3d804e97a2b59f33b62e6ce2fb98"
-          }
-        },
-        {
-          "client_id": "312088988951-2kcbqt4rkpnipaavk4h4riqt0gb1kq35.apps.googleusercontent.com",
+          "client_id": "672245011301-lca78p0ok4n7q54at8n7tj0271bqn2jm.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBoIR-x2cwTvzbMt2l_WChSTNOsHYHnoNg"
+          "current_key": "AIzaSyClbiQ15Bi8Ef639wk9eM3syvlhpB_D3pA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "312088988951-2kcbqt4rkpnipaavk4h4riqt0gb1kq35.apps.googleusercontent.com",
+              "client_id": "672245011301-lca78p0ok4n7q54at8n7tj0271bqn2jm.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "312088988951-30bugsq1tb0r9eam4b1kt4uc68jq45up.apps.googleusercontent.com",
+              "client_id": "672245011301-66ddlnjn2s70i0tui8ipspahoj7vucb5.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
                 "bundle_id": "com.ephraim.sule.chefKiss"

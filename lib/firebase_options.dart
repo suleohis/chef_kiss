@@ -50,21 +50,21 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBoIR-x2cwTvzbMt2l_WChSTNOsHYHnoNg',
-    appId: '1:312088988951:android:7b277723c945aa42aebb52',
-    messagingSenderId: '312088988951',
-    projectId: 'recipe-app-39f9f',
-    storageBucket: 'recipe-app-39f9f.firebasestorage.app',
+    apiKey: 'AIzaSyClbiQ15Bi8Ef639wk9eM3syvlhpB_D3pA',
+    appId: '1:672245011301:android:10b7d32ca839827f50878c',
+    messagingSenderId: '672245011301',
+    projectId: 'chefkiss-8258f',
+    storageBucket: 'chefkiss-8258f.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBhBxBjg85NCscIEHcqkHoA8VVQHHs_S4A',
-    appId: '1:312088988951:ios:ca348881275d0ed7aebb52',
-    messagingSenderId: '312088988951',
-    projectId: 'recipe-app-39f9f',
-    storageBucket: 'recipe-app-39f9f.firebasestorage.app',
-    androidClientId: '312088988951-e97lfikg7g7h0ml0sbc7dphnehv27qv3.apps.googleusercontent.com',
-    iosClientId: '312088988951-30bugsq1tb0r9eam4b1kt4uc68jq45up.apps.googleusercontent.com',
+    apiKey: 'AIzaSyBRKVCTytRNRQqSn7us9UntuujH7-RPXbU',
+    appId: '1:672245011301:ios:672058d8c72d87b950878c',
+    messagingSenderId: '672245011301',
+    projectId: 'chefkiss-8258f',
+    storageBucket: 'chefkiss-8258f.firebasestorage.app',
+    androidClientId: '672245011301-oh3r11ckcohnd40ircimt2rov6poup6k.apps.googleusercontent.com',
+    iosClientId: '672245011301-66ddlnjn2s70i0tui8ipspahoj7vucb5.apps.googleusercontent.com',
     iosBundleId: 'com.ephraim.sule.chefKiss',
   );
 

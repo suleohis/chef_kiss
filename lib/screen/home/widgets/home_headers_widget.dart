@@ -74,7 +74,7 @@ class HomeHeadersWidget extends StatelessWidget {
                     padding: EdgeInsets.zero,
                     enabled: false,
                     prefix: Icon(
-                      FontAwesomeIcons.magnifyingGlass,
+                      FontAwesomeIcons.magnifyingGlass.data,
                       size: 18,
                       color: ColorsUtil.grey,
                     ).paddingSymmetric(horizontal: 10.w),
@@ -91,7 +91,7 @@ class HomeHeadersWidget extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10.r),
                     ),
                     child: Icon(
-                      FontAwesomeIcons.filter,
+                      FontAwesomeIcons.filter.data,
                       color: ColorsUtil.white,
                       size: 20,
                     ),

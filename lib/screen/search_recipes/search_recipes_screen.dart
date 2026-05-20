@@ -36,7 +36,7 @@ class SearchRecipesScreen extends StatelessWidget {
                           onChanged: (value) => controller.searchMeal(value),
                           padding: EdgeInsets.zero,
                           prefix: Icon(
-                            FontAwesomeIcons.magnifyingGlass,
+                            FontAwesomeIcons.magnifyingGlass.data,
                             size: 18,
                             color: ColorsUtil.grey,
                           ).paddingSymmetric(horizontal: 10.w),
@@ -53,7 +53,7 @@ class SearchRecipesScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10.r),
                           ),
                           child: Icon(
-                            FontAwesomeIcons.filter,
+                            FontAwesomeIcons.filter.data,
                             color: ColorsUtil.white,
                             size: 20,
                           ),

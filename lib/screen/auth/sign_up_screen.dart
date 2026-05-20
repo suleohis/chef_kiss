@@ -189,16 +189,16 @@ class SignUpScreen extends StatelessWidget {
                                 Assets.images.googleButton.path,
                                 width: 50.w,
                                 height: 50.h,
-                              ).paddingOnly(right: 20.w),
+                              ).paddingOnly(right: 0.w),
                             ),
-                            GestureDetector(
-                              onTap: () => loginController.facebookLogin(),
-                              child: Image.asset(
-                                Assets.images.facebookButton.path,
-                                width: 50.w,
-                                height: 50.h,
-                              ),
-                            ),
+                            // GestureDetector(
+                            //   onTap: () => loginController.facebookLogin(),
+                            //   child: Image.asset(
+                            //     Assets.images.facebookButton.path,
+                            //     width: 50.w,
+                            //     height: 50.h,
+                            //   ),
+                            // ),
                           ],
                         ).paddingOnly(bottom: 15.h),),
                     Wrap(
