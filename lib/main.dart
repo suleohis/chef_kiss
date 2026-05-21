@@ -1,6 +1,7 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:recipe_app/util/app_export.dart';
 
 import 'controllers/lang/lang_controller.dart';
@@ -10,6 +11,10 @@ import 'firebase_options.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  GoogleSignIn.instance.initialize(
+    serverClientId: '672245011301-lca78p0ok4n7q54at8n7tj0271bqn2jm.apps.googleusercontent.com',
+  );
 
   // Firebase Analytics
   FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(true);

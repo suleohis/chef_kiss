@@ -1,4 +1,5 @@
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../util/controller_export.dart';
 
@@ -76,71 +77,56 @@ class LoginController extends GetxController {
 
   Future<UserModel?> googleLogin() async {
     try {
+      isLoading = true;
+      update();
+
       FirebaseAuth firebaseAuth = FirebaseAuth.instance;
       GoogleSignIn googleSignIn = GoogleSignIn.instance;
 
-      googleSignIn.initialize(
-        // clientId: 'YOUR_IOS_CLIENT_ID',         // for iOS/macOS
-        serverClientId: '1070581557056-k26adbrv2ajprv2spg1b6ft684detu1r.apps.googleusercontent.com',   // required on Android
-      );
-      ///Sign in with google
-      GoogleSignInAccount? googleUser = await googleSignIn.authenticate().catchError(
-        (e) => throw e,
-      );
+      // Force a fresh account picker — prevents [16] reauth failed on Android
+      await googleSignIn.signOut();
+      GoogleSignInAccount googleUser = await googleSignIn.authenticate();
 
       if (googleUser.email.isEmpty) throw 'something_wrong'.tr;
 
-      ///Get auth info
-      // final GoogleSignInAuthentication googleAuth = await googleUser
-      //     .au
-      //     .catchError((e) => throw e);
-
+      final googleAuth = await googleUser.authentication;
       final credential = GoogleAuthProvider.credential(
-        // accessToken: googleAuth.,
-        idToken: googleUser.authentication.idToken,
+        idToken: googleAuth.idToken,
       );
 
-      // Sign in to Firebase with the Google credential.
       final userCredential = await firebaseAuth
           .signInWithCredential(credential)
           .catchError((e) => throw e);
 
       if (userCredential.user != null) {
         User user = userCredential.user!;
-        FirebaseAuth auth = FirebaseAuth.instance;
-        UserModel userModel =  UserModel(
+        UserModel userModel = UserModel(
           id: user.uid,
           email: googleUser.email,
-          name: googleUser.displayName!,
+          name: googleUser.displayName ?? '',
           bookmark: [],
           aiRecipes: [],
         );
-        FirebaseUtil.users
-            .where(ConstUtil.id, isEqualTo: auth.currentUser!.uid)
-            .get()
-            .then((value) {
-              if (value.docs.isEmpty) {
-                FirebaseUtil.users
-                    .doc(user.uid)
-                    .set(userModel.toJson())
-                    .catchError((e) {
-                      throw e;
-                    })
-                    .then(
-                      (value) => success(
-                        context: Get.context!,
-                        title: 'success'.tr,
-                        message: 'signup_successful'.tr,
-                      ),
-                    );
-              } else {
-                success(
-                  context: Get.context!,
-                  title: 'success'.tr,
-                  message: 'login_successful'.tr,
-                );
-              }
-            });
+
+        final existing = await FirebaseUtil.users
+            .where(ConstUtil.id, isEqualTo: user.uid)
+            .get();
+
+        if (existing.docs.isEmpty) {
+          await FirebaseUtil.users.doc(user.uid).set(userModel.toJson());
+          success(
+            context: Get.context!,
+            title: 'success'.tr,
+            message: 'signup_successful'.tr,
+          );
+        } else {
+          success(
+            context: Get.context!,
+            title: 'success'.tr,
+            message: 'login_successful'.tr,
+          );
+        }
+
         isLoading = false;
         update();
         StorageHelper.saveUser(userModel);
@@ -156,6 +142,18 @@ class LoginController extends GetxController {
         message: 'something_wrong'.tr,
       );
       return null;
+    } on GoogleSignInException catch (e) {
+      isLoading = false;
+      update();
+      if (e.code != GoogleSignInExceptionCode.canceled) {
+        error(
+          context: Get.context!,
+          title: 'login_failed'.tr,
+          message: e.description ?? 'something_wrong'.tr,
+        );
+        printError(e.toString());
+      }
+      return null;
     } catch (e) {
       isLoading = false;
       update();
@@ -164,7 +162,6 @@ class LoginController extends GetxController {
         title: 'signUp_failed'.tr,
         message: e.toString(),
       );
-      print(e);
       printError(e.toString());
       return null;
     }

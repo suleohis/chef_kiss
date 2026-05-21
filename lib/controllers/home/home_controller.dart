@@ -134,12 +134,13 @@ class HomeController extends GetxController {
   Future<void> logout() async {
     try {
       FirebaseAuth auth = FirebaseAuth.instance;
-      GoogleSignIn google = GoogleSignIn.instance;
-      GoogleSignInAccount? googleUser = await google.authenticate();
-      bool isSignedIn = googleUser.email.isNotEmpty;
-      if (isSignedIn) await google.signOut();
-      await auth.signOut();
 
+      final providerIds = auth.currentUser?.providerData.map((p) => p.providerId).toList() ?? [];
+      if (providerIds.contains('google.com')) {
+        await GoogleSignIn.instance.signOut();
+      }
+
+      await auth.signOut();
       StorageHelper.logout();
       Get.offAllNamed(RouteHelper.login);
       success(
