@@ -65,6 +65,9 @@ class HomeController extends GetxController {
           update();
         }
 
+        // Brief pause so the shimmer doesn't flash away instantly
+        await Future.delayed(const Duration(milliseconds: 600));
+
         isLoadingCategory = false;
         update();
       }
@@ -89,6 +92,10 @@ class HomeController extends GetxController {
         );
 
         meals = response.meals ?? [];
+
+        // Brief pause so the shimmer doesn't flash away instantly
+        await Future.delayed(const Duration(milliseconds: 600));
+
         isLoadingMeal = false;
         update();
       }

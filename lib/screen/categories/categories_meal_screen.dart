@@ -26,15 +26,11 @@ class CategoriesMealScreen extends StatelessWidget {
             return controller.isLoadingMeal
                 ? CategoriesMealShimmer()
                 : controller.meals.isEmpty
-                ? Center(
-                  child: Text(
-                    'empty_list'.tr,
-                    style: TextStyles.bold.copyWith(
-                      fontSize: 24.sp,
-                      color: ColorsUtil.primary,
-                    ),
-                  ),
-                ).paddingSymmetric(horizontal: 30.w, vertical: 30.h)
+                ? EmptyStateWidget(
+                    icon: Icons.no_meals_outlined,
+                    title: 'No meals in this category',
+                    subtitle: 'Pull down to refresh or try another category.',
+                  )
                 : AlignedGridView.count(
                   crossAxisCount: 2,
                   crossAxisSpacing: 15.w,
@@ -45,7 +41,10 @@ class CategoriesMealScreen extends StatelessWidget {
                   ),
                   itemCount: controller.meals.length,
                   itemBuilder: (context, index) {
-                    return GestureDetector(
+                    return StaggeredListItem(
+                      index: index,
+                      itemDelay: 70,
+                      child: GestureDetector(
                       onTap:
                           () => Get.toNamed(
                             RouteHelper.recipeDetail,
@@ -112,6 +111,7 @@ class CategoriesMealScreen extends StatelessWidget {
                             ),
                           ),
                         ],
+                      ),
                       ),
                     );
                   },

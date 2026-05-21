@@ -26,15 +26,11 @@ class CategoriesScreen extends StatelessWidget {
             return controller.isLoadingCategory
                 ? CategoriesShimmer()
                 : controller.categories.isEmpty
-                ? Center(
-                  child: Text(
-                    'empty_list'.tr,
-                    style: TextStyles.bold.copyWith(
-                      fontSize: 24.sp,
-                      color: ColorsUtil.primary,
-                    ),
-                  ),
-                ).paddingSymmetric(horizontal: 30.w, vertical: 30.h)
+                ? EmptyStateWidget(
+                    icon: Icons.category_outlined,
+                    title: 'No categories found',
+                    subtitle: 'Pull down to refresh and try again.',
+                  )
                 : ListView.builder(
                   itemCount: controller.categories.length,
                   padding: EdgeInsets.symmetric(
@@ -43,7 +39,10 @@ class CategoriesScreen extends StatelessWidget {
                   ),
                   itemBuilder: (context, index) {
                     Category category = controller.categories[index];
-                    return GestureDetector(
+                    return StaggeredListItem(
+                      index: index,
+                      itemDelay: 80,
+                      child: GestureDetector(
                       onTap: () => controller.onSelectedCategory(index),
                       child: Card(
                         color: ColorsUtil.white,
@@ -87,6 +86,7 @@ class CategoriesScreen extends StatelessWidget {
                           ),
                         ),
                       ).paddingOnly(bottom: 20.h),
+                      ),
                     );
                   },
                 );

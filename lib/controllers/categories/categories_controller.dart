@@ -49,6 +49,10 @@ class CategoriesController extends GetxController {
         categories = response.categories ?? [];
 
         printInfo(categories);
+
+        // Brief pause so the shimmer doesn't flash away instantly
+        await Future.delayed(const Duration(milliseconds: 600));
+
         isLoadingCategory = false;
         update();
       }
@@ -76,6 +80,10 @@ class CategoriesController extends GetxController {
         );
 
         meals = response.meals ?? [];
+
+        // Brief pause so the shimmer doesn't flash away instantly
+        await Future.delayed(const Duration(milliseconds: 600));
+
         isLoadingMeal = false;
         update();
       }

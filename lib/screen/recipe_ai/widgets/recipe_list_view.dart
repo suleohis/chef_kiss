@@ -31,6 +31,33 @@ class RecipeListView extends StatelessWidget {
               UserModel user = UserModel.from(snapshot.data.data());
               List<RecipeAIModel> recipes = RecipeAIModel.loadFrom(user.aiRecipes);
               final displayedRecipes = controller.filteredRecipes(recipes).toList();
+
+              if (displayedRecipes.isEmpty) {
+                return Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.menu_book_outlined, size: 64, color: Colors.grey.shade400),
+                      const SizedBox(height: 16),
+                      Text(
+                        controller.searchText.isEmpty
+                            ? 'No recipes yet!'
+                            : 'No recipes match "${controller.searchText}"',
+                        style: TextStyle(fontSize: 16, color: Colors.grey.shade600),
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: 8),
+                      if (controller.searchText.isEmpty)
+                        Text(
+                          'Go to the Chat tab and ask the AI\nto generate a recipe for you.',
+                          style: TextStyle(fontSize: 13, color: Colors.grey.shade500),
+                          textAlign: TextAlign.center,
+                        ),
+                    ],
+                  ),
+                );
+              }
+
               return ListView.builder(
                 itemCount: displayedRecipes.length,
                 itemBuilder: (context, index) {
@@ -43,7 +70,7 @@ class RecipeListView extends StatelessWidget {
                     onExpansionChanged:
                         (expanded) => _onExpand(recipe.id, expanded),
                     onEdit: () => _onEdit(recipe),
-                    onDelete: () => controller.onDeleteFun(recipe,context),
+                    onDelete: () => controller.onDeleteFun(recipe, context),
                   );
                 },
               );

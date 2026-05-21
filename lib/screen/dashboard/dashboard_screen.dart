@@ -22,42 +22,54 @@ class DashboardScreen extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () => controller.changeTab(0),
-                  child: SvgPicture.asset(
-                    controller.tabIndex.value == 0
-                        ? Assets.icons.homeSelectedIcon.path
-                        : Assets.icons.homeIcon.path,
-                    height: 24.h,
-                    width: 24.w,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SvgPicture.asset(
+                      controller.tabIndex.value == 0
+                          ? Assets.icons.homeSelectedIcon.path
+                          : Assets.icons.homeIcon.path,
+                      height: 24.h,
+                      width: 24.w,
+                    ),
                   ),
                 ),
                 GestureDetector(
                   onTap: () => controller.changeTab(1),
-                  child: SvgPicture.asset(
-                    controller.tabIndex.value == 1
-                        ? Assets.icons.bookmarkSelectedIcon.path
-                        : Assets.icons.bookmarkIcon.path,
-                    height: 24.h,
-                    width: 24.w,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SvgPicture.asset(
+                      controller.tabIndex.value == 1
+                          ? Assets.icons.bookmarkSelectedIcon.path
+                          : Assets.icons.bookmarkIcon.path,
+                      height: 24.h,
+                      width: 24.w,
+                    ),
                   ),
                 ),
                 GestureDetector(
                   onTap: () => controller.changeTab(2),
-                  child: SvgPicture.asset(
-                    controller.tabIndex.value == 2
-                        ? Assets.icons.categoriesSelectedIcon.path
-                        : Assets.icons.categoriesIcon.path,
-                    height: 24.h,
-                    width: 24.w,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SvgPicture.asset(
+                      controller.tabIndex.value == 2
+                          ? Assets.icons.categoriesSelectedIcon.path
+                          : Assets.icons.categoriesIcon.path,
+                      height: 24.h,
+                      width: 24.w,
+                    ),
                   ),
                 ),
                 GestureDetector(
                   onTap: () => controller.changeTab(3),
-                  child: SvgPicture.asset(
-                    controller.tabIndex.value == 3
-                        ? Assets.icons.chatSelectedIcon.path
-                        : Assets.icons.chatIcon.path,
-                    height: 24.h,
-                    width: 24.w,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SvgPicture.asset(
+                      controller.tabIndex.value == 3
+                          ? Assets.icons.chatSelectedIcon.path
+                          : Assets.icons.chatIcon.path,
+                      height: 24.h,
+                      width: 24.w,
+                    ),
                   ),
                 ),
               ],

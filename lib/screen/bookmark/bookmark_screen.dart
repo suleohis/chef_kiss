@@ -27,21 +27,29 @@ class BookmarkScreen extends StatelessWidget {
                 controller.isLoading
                     ? BookmarkShimmer()
                     : controller.meals.isEmpty
-                    ? Center(
-                      child: Text(
-                        'empty_list'.tr,
-                        style: TextStyles.bold.copyWith(
-                          fontSize: 24.sp,
-                          color: ColorsUtil.primary,
-                        ),
-                      ),
-                    ).paddingSymmetric(horizontal: 30.w, vertical: 30.h)
+                    ? EmptyStateWidget(
+                        icon: Icons.bookmark_border_rounded,
+                        title: 'No saved recipes yet',
+                        subtitle:
+                            'Recipes you bookmark will appear here.\nStart exploring and save your favourites!',
+                      )
                     : ListView.builder(
                       padding: EdgeInsets.all(20),
-                      itemCount: controller.meals.length,
+                      itemCount: controller.meals.length +
+                          (controller.isFetchingMore ? 1 : 0),
                       itemBuilder: (_, index) {
+                        // Bottom loading indicator while more bookmarks arrive
+                        if (index == controller.meals.length) {
+                          return const Padding(
+                            padding: EdgeInsets.symmetric(vertical: 16),
+                            child: Center(child: CircularProgressIndicator()),
+                          );
+                        }
                         Meal data = controller.meals[index];
-                        return GestureDetector(
+                        return StaggeredListItem(
+                          index: index,
+                          itemDelay: 120,
+                          child: GestureDetector(
                           onTap:
                               () => Get.toNamed(
                                 RouteHelper.recipeDetail,
@@ -124,6 +132,7 @@ class BookmarkScreen extends StatelessWidget {
                               ],
                             ),
                           ).paddingOnly(bottom: 15.h),
+                          ),
                         );
                       },
                     ),

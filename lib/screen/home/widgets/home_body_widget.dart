@@ -14,15 +14,17 @@ class HomeBodyWidget extends StatelessWidget {
             /// Categories
             SizedBox(
               height: 31.h,
-              child:
-                  controller.isLoadingCategory
-                      ? HomeCategoryShimmerWidget()
-                      : ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: controller.categories.length,
-                        itemBuilder: (context, index) {
-                          bool isSelected = index == controller.catIndex;
-                          return GestureDetector(
+              child: controller.isLoadingCategory
+                  ? HomeCategoryShimmerWidget()
+                  : ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: controller.categories.length,
+                      itemBuilder: (context, index) {
+                        bool isSelected = index == controller.catIndex;
+                        return StaggeredListItem(
+                          index: index,
+                          itemDelay: 60,
+                          child: GestureDetector(
                             onTap: () => controller.selectCategory(index),
                             child: Container(
                               height: 31.h,
@@ -32,115 +34,119 @@ class HomeBodyWidget extends StatelessWidget {
                                 vertical: 7.h,
                               ),
                               decoration: BoxDecoration(
-                                color:
-                                    isSelected
-                                        ? ColorsUtil.primary
-                                        : Colors.transparent,
+                                color: isSelected
+                                    ? ColorsUtil.primary
+                                    : Colors.transparent,
                                 borderRadius: BorderRadius.circular(10.r),
                               ),
                               child: Text(
                                 controller.categories[index].strCategory ?? '',
                                 style: TextStyles.semiBold.copyWith(
                                   fontSize: 11.sp,
-                                  color:
-                                      isSelected
-                                          ? ColorsUtil.white
-                                          : ColorsUtil.primary,
+                                  color: isSelected
+                                      ? ColorsUtil.white
+                                      : ColorsUtil.primary,
                                 ),
                               ),
                             ),
-                          );
-                        },
-                      ),
+                          ),
+                        );
+                      },
+                    ),
             ).paddingOnly(bottom: 20.h),
 
             /// Meals
             controller.isLoadingMeal
                 ? HomeMealShimmerWidget()
-                : controller.meals.isEmpty ?
-                  Center(
-                    child: Text(
-                      'empty_list'.tr,
-                      style: TextStyles.bold.copyWith(
-                        fontSize: 24.sp,
-                        color: ColorsUtil.primary
-                      ),
-                    ),
-                  ).paddingSymmetric(horizontal: 30.w, vertical: 30.h)
-                : AlignedGridView.count(
-                  physics: NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 15.w,
-                  mainAxisSpacing: 15.h,
-                  itemCount: controller.meals.length,
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () => Get.toNamed(RouteHelper.recipeDetail, arguments: {
-                        'mealId': controller.meals[index].idMeal!
-                      }),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(10.r),
-                            child: Stack(
-                              children: [
-                                CachedNetworkImage(
-                                  imageUrl:
-                                      controller.meals[index].strMealThumb ??
-                                      '',
-                                  height: 124.h,
-                                  width: double.maxFinite.w,
-                                  fit: BoxFit.cover,
-                                  errorWidget:
-                                      (_, url, error) => Image.asset(
-                                        Assets.images.noImage.path,
-                                        height: 124.h,
-                                        fit: BoxFit.cover,
-                                      ),
-                                ).paddingOnly(bottom: 5.h),
-                                if (controller.user?.bookmark.contains(
-                                      controller.meals[index].idMeal,
-                                    ) ??
-                                    false)
-                                  Positioned(
-                                    right: 8.w,
-                                    top: 8.h,
-                                    child: Container(
-                                      height: 24.h,
-                                      width: 24.w,
-                                      padding: EdgeInsets.all(5),
-                                      alignment: Alignment.center,
-                                      decoration: BoxDecoration(
-                                        color: ColorsUtil.white,
-                                        borderRadius: BorderRadius.circular(
-                                          100.r,
-                                        ),
-                                      ),
-                                      child: SvgPicture.asset(
-                                        Assets.icons.bookmarkSelectedIcon.path,
-                                        height: 16.h,
-                                        width: 16.w,
-                                      ),
+                : controller.meals.isEmpty
+                    ? EmptyStateWidget(
+                        icon: Icons.no_meals_outlined,
+                        title: 'No recipes found',
+                        subtitle:
+                            'Try selecting a different category\nor pull down to refresh.',
+                      )
+                    : AlignedGridView.count(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 15.w,
+                        mainAxisSpacing: 15.h,
+                        itemCount: controller.meals.length,
+                        itemBuilder: (context, index) {
+                          return StaggeredListItem(
+                            index: index,
+                            itemDelay: 70,
+                            child: GestureDetector(
+                              onTap: () => Get.toNamed(
+                                RouteHelper.recipeDetail,
+                                arguments: {
+                                  'mealId': controller.meals[index].idMeal!,
+                                },
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(10.r),
+                                    child: Stack(
+                                      children: [
+                                        CachedNetworkImage(
+                                          imageUrl: controller
+                                                  .meals[index].strMealThumb ??
+                                              '',
+                                          height: 124.h,
+                                          width: double.maxFinite.w,
+                                          fit: BoxFit.cover,
+                                          errorWidget: (_, url, error) =>
+                                              Image.asset(
+                                            Assets.images.noImage.path,
+                                            height: 124.h,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ).paddingOnly(bottom: 5.h),
+                                        if (controller.user?.bookmark.contains(
+                                              controller.meals[index].idMeal,
+                                            ) ??
+                                            false)
+                                          Positioned(
+                                            right: 8.w,
+                                            top: 8.h,
+                                            child: Container(
+                                              height: 24.h,
+                                              width: 24.w,
+                                              padding: const EdgeInsets.all(5),
+                                              alignment: Alignment.center,
+                                              decoration: BoxDecoration(
+                                                color: ColorsUtil.white,
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        100.r),
+                                              ),
+                                              child: SvgPicture.asset(
+                                                Assets.icons.bookmarkSelectedIcon
+                                                    .path,
+                                                height: 16.h,
+                                                width: 16.w,
+                                              ),
+                                            ),
+                                          ),
+                                      ],
                                     ),
                                   ),
-                              ],
+                                  Text(
+                                    controller.meals[index].strMeal ?? '',
+                                    maxLines: 2,
+                                    style: TextStyles.semiBold.copyWith(
+                                      fontSize: 12.sp,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                          Text(
-                            controller.meals[index].strMeal ?? '',
-                            maxLines: 2,
-                            style: TextStyles.semiBold.copyWith(
-                              fontSize: 12.sp,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                        ],
+                          );
+                        },
                       ),
-                    );
-                  },
-                ),
           ],
         );
       },
