@@ -14,18 +14,22 @@ class HomeHeadersWidget extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '${'hello'.tr} ${home.user?.name ?? ''}',
-                      style: TextStyles.bold.copyWith(fontSize: 20),
-                    ),
-                    Text(
-                      'cooking_today'.tr,
-                      style: TextStyles.normal.copyWith(fontSize: 11),
-                    ),
-                  ],
+                Expanded(
+
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        '${'hello'.tr} ${(home.user?.name)?.split(' ').first ?? ''}',
+                        maxLines: 1,
+                        style: TextStyles.bold.copyWith(fontSize: 20),
+                      ),
+                      Text(
+                        'cooking_today'.tr,
+                        style: TextStyles.normal.copyWith(fontSize: 11),
+                      ),
+                    ],
+                  ),
                 ),
                 CustomPopup(
                   content: Column(

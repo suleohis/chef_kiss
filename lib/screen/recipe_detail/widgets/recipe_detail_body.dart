@@ -1,9 +1,10 @@
 part of '../recipe_detail_screen.dart';
 
 class RecipeDetailBody extends StatelessWidget {
-  const RecipeDetailBody({super.key, required this.controller});
+  const RecipeDetailBody({super.key, required this.controller, this.player});
 
   final RecipeDetailController controller;
+  final Widget? player;
 
   @override
   Widget build(BuildContext context) {
@@ -13,10 +14,10 @@ class RecipeDetailBody extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ///Youtube Vide0
+          ///Youtube Video
           RecipeDetailVideoWidget(
             meal: meal,
-            youtubeController: controller.youtubeController,
+            player: player,
           ),
 
           ///Recipe Info

@@ -25,8 +25,8 @@ class RecipeDetailController extends GetxController {
 
   @override
   void dispose() {
+    youtubeController?.dispose();
     super.dispose();
-    youtubeController!.dispose();
   }
 
   Future<void> onRefresh() async {

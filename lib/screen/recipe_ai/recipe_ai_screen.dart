@@ -29,7 +29,7 @@ class _RecipeAIScreenState extends State<RecipeAIScreen> {
   LlmProvider _createProvider([List<ChatMessage>? history]) => FirebaseProvider(
         history: history,
         model: FirebaseAI.googleAI().generativeModel(
-          model: 'gemini-2.0-flash',
+          model: 'gemini-2.5-flash-lite',
           generationConfig: GenerationConfig(
             responseMimeType: 'application/json',
             responseSchema: Schema(
@@ -108,8 +108,10 @@ class _RecipeAIScreenState extends State<RecipeAIScreen> {
                 welcomeMessage: welcomeMessage,
                 responseBuilder: (context, response) =>
                     RecipeResponseView(response),
-                onErrorCallback: (context, e) =>
-                    printError(info: e.message),
+                onErrorCallback: (context, e) {
+                  print('here');
+                  printError(info: e.message);
+                },
               ),
             ],
           ),
